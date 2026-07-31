@@ -7,12 +7,12 @@ import customer from "@/assets/gal-customer.jpg";
 import delivery from "@/assets/svc-delivery.jpg";
 
 const shots = [
-  { img: commercial, alt: "Industrial laundry machines", span: "sm:col-span-2 sm:row-span-2" },
-  { img: wash, alt: "Freshly folded towels", span: "" },
-  { img: iron, alt: "Steam ironing a white shirt", span: "" },
-  { img: customer, alt: "Happy customer receiving laundry", span: "" },
-  { img: team, alt: "Professional laundry team", span: "" },
-  { img: delivery, alt: "Blue branded delivery vehicle", span: "sm:col-span-2" },
+  { img: commercial, alt: "Industrial laundry machines", span: "h-full sm:col-span-2 sm:row-span-2" },
+  { img: wash, alt: "Freshly folded towels", span: "h-full" },
+  { img: iron, alt: "Steam ironing a white shirt", span: "h-full" },
+  { img: customer, alt: "Happy customer receiving laundry", span: "h-full" },
+  { img: team, alt: "Professional laundry team", span: "h-full" },
+  { img: delivery, alt: "Blue branded delivery vehicle", span: "h-full sm:col-span-2" },
 ];
 
 export function Gallery() {
