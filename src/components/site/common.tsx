@@ -142,11 +142,13 @@ export function ButtonLink({
   children,
   variant = "accent",
   className = "",
+  onClick,
 }: {
-  href: string;
+  href?: string;
   children: ReactNode;
   variant?: "accent" | "white" | "blue" | "outline";
   className?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
 }) {
   const styles: Record<string, string> = {
     accent: "accent-gradient text-accent-foreground shadow-soft hover:brightness-105",
@@ -154,11 +156,18 @@ export function ButtonLink({
     blue: "brand-gradient text-primary-foreground shadow-soft hover:brightness-105",
     outline: "border-2 border-primary/40 text-primary-deep hover:bg-secondary",
   };
+  const classes = `inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-all duration-300 active:scale-[0.97] sm:text-base ${styles[variant]} ${className} cursor-pointer`;
+
+  if (onClick && !href) {
+    return (
+      <button onClick={onClick} className={classes}>
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-all duration-300 active:scale-[0.97] sm:text-base ${styles[variant]} ${className}`}
-    >
+    <a href={href} onClick={onClick} className={classes}>
       {children}
     </a>
   );

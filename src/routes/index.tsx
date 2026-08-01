@@ -7,13 +7,15 @@ import { WhyUs } from "@/components/site/WhyUs";
 import { Services } from "@/components/site/Services";
 import { HowItWorks } from "@/components/site/HowItWorks";
 import { Pricing } from "@/components/site/Pricing";
-import { AppSection } from "@/components/site/AppSection";
 import { Reviews } from "@/components/site/Reviews";
 import { Gallery } from "@/components/site/Gallery";
 import { Faq } from "@/components/site/Faq";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { FloatingBar } from "@/components/site/FloatingBar";
+import { OfferPopup } from "@/components/site/OfferPopup";
+import { BookingPopup } from "@/components/site/BookingPopup";
+import { LeftQuickContact } from "@/components/site/LeftQuickContact";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,7 +73,6 @@ function Index() {
         <Services />
         <HowItWorks />
         <Pricing />
-        <AppSection />
         <Reviews />
         <Gallery />
         <Faq />
@@ -79,6 +80,9 @@ function Index() {
       </main>
       <Footer />
       <FloatingBar />
+      <OfferPopup />
+      <BookingPopup />
+      <LeftQuickContact />
     </div>
   );
 }

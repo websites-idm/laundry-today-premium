@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { openBooking } from "./BookingPopup";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -29,7 +29,7 @@ export function Nav() {
     >
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <a href="#home" className="flex min-w-0 shrink-0 items-center">
-          <img src={logo} alt="Laundry Today" className="h-9 w-auto sm:h-11" width={220} height={110} />
+          <img src="/logo.jpeg" alt="Laundry Today" className="h-9 w-auto sm:h-11" width={220} height={110} />
         </a>
 
         <nav className="ml-auto hidden items-center gap-1 lg:flex">
@@ -44,12 +44,12 @@ export function Nav() {
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="accent-gradient ml-auto hidden shrink-0 rounded-full px-6 py-3 text-sm font-bold text-accent-foreground shadow-soft transition-transform duration-300 hover:-translate-y-0.5 lg:ml-4 lg:inline-flex"
+        <button
+          onClick={() => openBooking()}
+          className="accent-gradient ml-auto hidden shrink-0 rounded-full px-6 py-3 text-sm font-bold text-accent-foreground shadow-soft transition-transform duration-300 hover:-translate-y-0.5 lg:ml-4 lg:inline-flex cursor-pointer"
         >
           Book Pickup
-        </a>
+        </button>
 
         <button
           onClick={() => setOpen((v) => !v)}
@@ -76,13 +76,15 @@ export function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="accent-gradient mt-2 rounded-2xl px-4 py-3 text-center text-base font-bold text-accent-foreground"
+          <button
+            onClick={() => {
+              setOpen(false);
+              openBooking();
+            }}
+            className="accent-gradient mt-2 rounded-2xl px-4 py-3 text-center text-base font-bold text-accent-foreground cursor-pointer"
           >
             Book Pickup
-          </a>
+          </button>
         </nav>
       </div>
     </header>

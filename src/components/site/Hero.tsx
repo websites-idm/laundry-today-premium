@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Truck, Timer, Sparkles, ShieldCheck } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import { Bubbles, ButtonLink, Reveal } from "./common";
+import { openBooking } from "./BookingPopup";
 
 const features = [
   { icon: Truck, title: "FREE Pickup", copy: "Doorstep collection at no extra cost." },
@@ -73,10 +74,7 @@ export function Hero() {
                 transition={{ delay: 0.85, duration: 0.6 }}
                 className="mt-7 flex flex-wrap gap-3"
               >
-                <ButtonLink href="#contact">Book Pickup</ButtonLink>
-                <ButtonLink href="#how" variant="white">
-                  Track Order
-                </ButtonLink>
+                <ButtonLink onClick={() => openBooking()}>Book Pickup</ButtonLink>
               </motion.div>
             </div>
           </div>
