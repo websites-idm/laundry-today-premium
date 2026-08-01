@@ -121,11 +121,13 @@ export function Pricing() {
                 placeholder="Search garments (e.g. Gown, Leather, Blanket)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                suppressHydrationWarning
                 className="w-full bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/60 text-sm font-semibold"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
+                  suppressHydrationWarning
                   className="p-1 rounded-full hover:bg-secondary text-muted-foreground transition-colors cursor-pointer"
                   aria-label="Clear search"
                 >
@@ -151,6 +153,7 @@ export function Pricing() {
                         setActiveSubCategory(cat.subCategories[0].name);
                       }
                     }}
+                    suppressHydrationWarning
                     className={`flex items-center gap-2 rounded-full px-5 py-3 text-xs font-extrabold tracking-wider uppercase transition-all duration-300 whitespace-nowrap cursor-pointer shrink-0 ${
                       isActive
                         ? "accent-gradient text-accent-foreground shadow-lift scale-102"
@@ -176,6 +179,7 @@ export function Pricing() {
                   <button
                     key={sub.name}
                     onClick={() => setActiveSubCategory(sub.name)}
+                    suppressHydrationWarning
                     className="relative py-2 px-3 text-sm font-extrabold text-primary-deep transition-all duration-200 cursor-pointer whitespace-nowrap"
                   >
                     <span className={isSubActive ? "text-accent" : "text-muted-foreground hover:text-primary-deep"}>
@@ -286,6 +290,7 @@ export function Pricing() {
                       {quantity === 0 ? (
                         <button
                           onClick={() => addToCart(item.name, item.price)}
+                          suppressHydrationWarning
                           className="flex h-8 w-8 place-items-center justify-center rounded-full bg-secondary text-primary-deep hover:accent-gradient hover:text-accent-foreground transition-all duration-300 cursor-pointer shadow-soft border border-primary/10 active:scale-90"
                           title={`Add ${item.name} to order`}
                         >
@@ -295,6 +300,7 @@ export function Pricing() {
                         <div className="flex items-center gap-2 bg-secondary border border-primary/10 rounded-full px-2 py-1 shadow-soft">
                           <button
                             onClick={() => updateQuantity(item.name, -1)}
+                            suppressHydrationWarning
                             className="grid h-6 w-6 place-items-center rounded-full bg-white text-primary-deep hover:bg-primary-deep/5 transition-colors duration-200 cursor-pointer"
                           >
                             <Minus className="h-3 w-3" />
@@ -304,6 +310,7 @@ export function Pricing() {
                           </span>
                           <button
                             onClick={() => updateQuantity(item.name, 1)}
+                            suppressHydrationWarning
                             className="grid h-6 w-6 place-items-center rounded-full bg-white text-primary-deep hover:bg-primary-deep/5 transition-colors duration-200 cursor-pointer"
                           >
                             <Plus className="h-3 w-3" />
@@ -355,6 +362,7 @@ export function Pricing() {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setCart({})}
+                  suppressHydrationWarning
                   className="text-xs font-bold text-white/85 hover:text-white underline px-2 py-1 cursor-pointer bg-transparent border-0"
                 >
                   Clear
@@ -368,6 +376,7 @@ export function Pricing() {
                     }));
                     openBooking(undefined, cartItemsArray);
                   }}
+                  suppressHydrationWarning
                   className="bg-white text-primary-deep rounded-full px-5 py-3 text-xs font-extrabold tracking-wider uppercase hover:bg-secondary transition-all active:scale-95 shadow-soft flex items-center gap-1.5 cursor-pointer border-0"
                 >
                   <span>Book Order</span>

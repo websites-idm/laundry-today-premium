@@ -113,6 +113,7 @@ export function BookingPopup() {
           setCartItems([]);
           setIsOpen(true);
         }}
+        suppressHydrationWarning
         className="fixed bottom-20 left-4 z-40 flex items-center gap-2 rounded-full px-5 py-3.5 text-xs font-extrabold text-white accent-gradient shadow-lift hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer lg:bottom-6 floaty"
         aria-label="Book Now"
       >
@@ -143,6 +144,7 @@ export function BookingPopup() {
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
+              suppressHydrationWarning
               className="absolute right-6 top-6 grid h-9 w-9 place-items-center rounded-full bg-secondary text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary-deep cursor-pointer"
               aria-label="Close modal"
             >
@@ -196,6 +198,7 @@ export function BookingPopup() {
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  suppressHydrationWarning
                   className="w-full rounded-2xl border-2 border-border bg-white px-4.5 py-3 text-sm outline-none focus:border-primary transition-colors font-medium"
                 />
               </div>
@@ -213,6 +216,7 @@ export function BookingPopup() {
                   placeholder="Enter your mobile number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  suppressHydrationWarning
                   className="w-full rounded-2xl border-2 border-border bg-white px-4.5 py-3 text-sm outline-none focus:border-primary transition-colors font-medium"
                 />
               </div>
@@ -230,6 +234,7 @@ export function BookingPopup() {
                   value={address}
                   rows={2}
                   onChange={(e) => setAddress(e.target.value)}
+                  suppressHydrationWarning
                   className="w-full rounded-2xl border-2 border-border bg-white px-4.5 py-3 text-sm outline-none focus:border-primary transition-colors font-medium resize-none"
                 />
               </div>
@@ -250,6 +255,7 @@ export function BookingPopup() {
                   placeholder="https://maps.google.com/?q=..."
                   value={googleLocation}
                   onChange={(e) => setGoogleLocation(e.target.value)}
+                  suppressHydrationWarning
                   className="w-full rounded-2xl border-2 border-border bg-white px-4.5 py-3 text-sm outline-none focus:border-primary transition-colors font-medium"
                 />
               </div>
@@ -262,6 +268,7 @@ export function BookingPopup() {
 
               <button
                 type="submit"
+                suppressHydrationWarning
                 className="accent-gradient w-full flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-accent-foreground shadow-soft transition-all duration-300 hover:brightness-105 active:scale-[0.98] cursor-pointer"
               >
                 <span>Confirm Booking via WhatsApp</span>

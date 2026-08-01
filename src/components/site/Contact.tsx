@@ -104,6 +104,7 @@ export function Contact() {
                     aria-label="Your name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    suppressHydrationWarning
                   />
                   <input
                     className="rounded-2xl border-2 border-border bg-white px-5 py-3.5 text-sm outline-none focus:border-primary"
@@ -111,6 +112,7 @@ export function Contact() {
                     aria-label="Phone number"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    suppressHydrationWarning
                   />
                   <textarea
                     className="rounded-2xl border-2 border-border bg-white px-5 py-3.5 text-sm outline-none focus:border-primary sm:col-span-2"
@@ -119,6 +121,7 @@ export function Contact() {
                     aria-label="Pickup details"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    suppressHydrationWarning
                   />
                   {error && (
                     <p className="text-xs font-bold text-red-500 sm:col-span-2">
@@ -127,6 +130,7 @@ export function Contact() {
                   )}
                   <button
                     type="submit"
+                    suppressHydrationWarning
                     className="accent-gradient rounded-full px-7 py-3.5 text-sm font-bold text-accent-foreground transition-transform duration-300 hover:-translate-y-0.5 sm:col-span-2 cursor-pointer"
                   >
                     Request Pickup

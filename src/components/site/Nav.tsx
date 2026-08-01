@@ -49,6 +49,7 @@ export function Nav() {
 
         <button
           onClick={() => openBooking()}
+          suppressHydrationWarning
           className="accent-gradient ml-auto hidden shrink-0 rounded-full px-6 py-3 text-sm font-bold text-accent-foreground shadow-soft transition-transform duration-300 hover:-translate-y-0.5 lg:ml-4 lg:inline-flex cursor-pointer"
         >
           Book Pickup
@@ -57,6 +58,7 @@ export function Nav() {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
+          suppressHydrationWarning
           className="ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-secondary text-primary-deep lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,6 +86,7 @@ export function Nav() {
               setOpen(false);
               openBooking();
             }}
+            suppressHydrationWarning
             className="accent-gradient mt-2 rounded-2xl px-4 py-3 text-center text-base font-bold text-accent-foreground cursor-pointer"
           >
             Book Pickup

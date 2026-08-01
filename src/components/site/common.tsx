@@ -160,7 +160,7 @@ export function ButtonLink({
 
   if (onClick && !href) {
     return (
-      <button onClick={onClick} className={classes}>
+      <button onClick={onClick} suppressHydrationWarning className={classes}>
         {children}
       </button>
     );

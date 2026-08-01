@@ -75,10 +75,12 @@ export function Footer() {
                 type="email"
                 aria-label="Email address"
                 placeholder="you@email.com"
+                suppressHydrationWarning
                 className="min-w-0 flex-1 rounded-full border-2 border-border px-5 py-3 text-sm outline-none focus:border-primary"
               />
               <button
                 type="submit"
+                suppressHydrationWarning
                 className="accent-gradient shrink-0 rounded-full px-5 py-3 text-sm font-bold text-accent-foreground"
               >
                 Join
@@ -87,7 +89,7 @@ export function Footer() {
             <p className="mt-4 text-sm text-muted-foreground">
               hello@laundrytoday.com
               <br />
-              +1 (555) 240-8890
+              07702608040
             </p>
           </div>
         </div>

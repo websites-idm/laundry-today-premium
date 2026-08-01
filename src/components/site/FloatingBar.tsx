@@ -18,7 +18,7 @@ export function FloatingBar() {
 
           if (it.label === "Book") {
             return (
-              <button key={it.label} onClick={() => openBooking()} className={className}>
+              <button key={it.label} onClick={() => openBooking()} suppressHydrationWarning className={className}>
                 <CalendarClock className="h-5.5 w-5.5" />
                 <span className="text-[11px] font-bold">{it.label}</span>
               </button>
