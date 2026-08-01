@@ -13,7 +13,6 @@ import { Faq } from "@/components/site/Faq";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { FloatingBar } from "@/components/site/FloatingBar";
-import { OfferPopup } from "@/components/site/OfferPopup";
 import { BookingPopup } from "@/components/site/BookingPopup";
 import { LeftQuickContact } from "@/components/site/LeftQuickContact";
 
@@ -80,7 +79,6 @@ function Index() {
       </main>
       <Footer />
       <FloatingBar />
-      <OfferPopup />
       <BookingPopup />
       <LeftQuickContact />
     </div>

@@ -28,8 +28,11 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#home" className="flex min-w-0 shrink-0 items-center">
-          <img src="/logo.jpeg" alt="Laundry Today" className="h-9 w-auto sm:h-11" width={220} height={110} />
+        <a href="#home" className="flex min-w-0 shrink-0 items-center gap-2">
+          <img src="/logo.png" alt="Laundry Today" className="h-9 w-auto sm:h-11" width={220} height={110} />
+          <span className="text-lg sm:text-xl font-extrabold text-primary-deep tracking-tight whitespace-nowrap">
+            Laundry Today
+          </span>
         </a>
 
         <nav className="ml-auto hidden items-center gap-1 lg:flex">

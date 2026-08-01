@@ -105,9 +105,24 @@ export function BookingPopup() {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <>
+      {/* Floating Action Button (FAB) to trigger booking modal at bottom-left */}
+      <button
+        onClick={() => {
+          setServiceName("");
+          setCartItems([]);
+          setIsOpen(true);
+        }}
+        className="fixed bottom-20 left-4 z-40 flex items-center gap-2 rounded-full px-5 py-3.5 text-xs font-extrabold text-white accent-gradient shadow-lift hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer lg:bottom-6 floaty"
+        aria-label="Book Now"
+      >
+        <Calendar className="h-4.5 w-4.5 animate-pulse" />
+        <span className="tracking-widest uppercase">Book Now</span>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
           {/* Backdrop Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -257,5 +272,6 @@ export function BookingPopup() {
         </div>
       )}
     </AnimatePresence>
+    </>
   );
 }

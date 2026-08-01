@@ -1,16 +1,17 @@
-import { Phone, CalendarClock } from "lucide-react";
+import { Phone, CalendarClock, Tag } from "lucide-react";
 import { openBooking } from "./BookingPopup";
 
 const items = [
   { icon: Phone, label: "Call", href: "tel:+917702608040" },
   { imageSrc: "/whatsapp.png", label: "WhatsApp", href: "https://wa.me/917702608040" },
+  { icon: Tag, label: "Prices", href: "#pricing" },
   { icon: CalendarClock, label: "Book" },
 ];
 
 export function FloatingBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 lg:hidden">
-      <div className="brand-gradient grid grid-cols-3 shadow-lift">
+      <div className="brand-gradient grid grid-cols-4 shadow-lift">
         {items.map((it) => {
           const className =
             "flex flex-col items-center gap-1 py-3 text-primary-foreground transition-colors active:bg-white/15 cursor-pointer bg-transparent border-0";

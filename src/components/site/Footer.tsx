@@ -9,7 +9,12 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-4">
           <div>
-            <img src="/logo.jpeg" alt="Laundry Today" loading="lazy" width={220} height={110} className="h-11 w-auto" />
+            <div className="flex items-center gap-2">
+              <img src="/logo.png" alt="Laundry Today" loading="lazy" width={220} height={110} className="h-11 w-auto" />
+              <span className="text-xl font-extrabold text-primary-deep tracking-tight">
+                Laundry Today
+              </span>
+            </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Technology-enabled laundry and dry cleaning with free pickup and delivery, seven days a
               week.
