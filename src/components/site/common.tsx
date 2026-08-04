@@ -126,11 +126,11 @@ export function Counter({
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-3xl font-extrabold text-primary-deep sm:text-4xl">
+      <div className="text-xl font-extrabold text-primary-deep min-[380px]:text-2xl sm:text-4xl">
         {value.toLocaleString()}
         {suffix}
       </div>
-      <div className="mt-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+      <div className="mt-1 text-[9px] min-[360px]:text-xs font-semibold tracking-wide text-muted-foreground uppercase">
         {label}
       </div>
     </div>

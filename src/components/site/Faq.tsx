@@ -49,6 +49,7 @@ export function Faq() {
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
+                  suppressHydrationWarning
                   className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-5 text-left"
                   aria-expanded={isOpen}
                 >

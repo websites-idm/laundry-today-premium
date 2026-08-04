@@ -88,6 +88,7 @@ export function Reviews() {
             <button
               onClick={() => scrollBy(-1)}
               aria-label="Previous reviews"
+              suppressHydrationWarning
               className="grid h-12 w-12 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-primary hover:text-primary-foreground"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -95,6 +96,7 @@ export function Reviews() {
             <button
               onClick={() => scrollBy(1)}
               aria-label="Next reviews"
+              suppressHydrationWarning
               className="grid h-12 w-12 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-primary hover:text-primary-foreground"
             >
               <ChevronRight className="h-5 w-5" />

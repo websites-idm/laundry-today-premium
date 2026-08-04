@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal, SectionTitle } from "./common";
 import { openBooking } from "./BookingPopup";
 import wash from "@/assets/svc-wash.jpg";
+import washIron from "@/assets/svc-wash-iron.jpg";
 import dry from "@/assets/svc-dry.jpg";
 import iron from "@/assets/svc-iron.jpg";
 import shoe from "@/assets/svc-shoe.jpg";
@@ -14,12 +15,13 @@ import delivery from "@/assets/svc-delivery.jpg";
 
 const services = [
   { img: wash, title: "Wash & Fold", copy: "Everyday laundry washed, dried and neatly folded." },
-  { img: dry, title: "Dry Cleaning", copy: "Suits, dresses and delicates treated with care." },
+  { img: washIron, title: "Wash & Iron", copy: "Everyday laundry washed, dried, and steam ironed to perfection." },
+  { img: dry, title: "Dry Cleaning", copy: "Men's wear & women's wear, synthetic wear wedding wear & Delicates treated with care." },
   { img: iron, title: "Steam Ironing", copy: "Crisp, press-perfect finish on shirts and trousers." },
   { img: shoe, title: "Shoe Cleaning", copy: "Sneakers and leather restored and deodorised." },
-  { img: curtain, title: "Curtain Cleaning", copy: "Take-down, deep clean and re-hang available." },
-  { img: blanket, title: "Blankets & Duvets", copy: "Bulky bedding washed in oversized machines." },
-  { img: commercial, title: "Commercial Laundry", copy: "Hotels, gyms and restaurants on contract rates." },
+  { img: curtain, title: "Curtain dry Cleaning", copy: "Take-down, deep clean and re-hang available." },
+  { img: blanket, title: "Blankets & Duvets", copy: "Bulky bedding & Quilt washed in oversized machines." },
+  { img: commercial, title: "Commercial Laundry", copy: "Hotels, gyms,restaurants and industrial etc., on contract rates." },
   { img: delivery, title: "Pickup & Delivery", copy: "Free two-way collection across the city." },
 ];
 
@@ -61,12 +63,16 @@ export function Services() {
   }, [isHovered]);
 
   // Swipe gesture handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.targetTouches && e.targetTouches[0]) {
+      setTouchStart(e.targetTouches[0].clientX);
+    }
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.targetTouches && e.targetTouches[0]) {
+      setTouchEnd(e.targetTouches[0].clientX);
+    }
   };
 
   const handleTouchEnd = () => {

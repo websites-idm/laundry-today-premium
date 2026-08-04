@@ -85,8 +85,8 @@ export function Hero() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </AnimatePresence>
-              {/* Subtle blue overlay matching website branding */}
-              <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-[oklch(0.42_0.13_248/0.92)] via-[oklch(0.46_0.13_247/0.75)] to-[oklch(0.5_0.14_246/0.45)]" />
+              {/* Subtle gradient overlay behind text (fades to clear on the right so the image is fully visible) */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/5 lg:bg-gradient-to-r lg:from-[oklch(0.42_0.13_248/0.75)] lg:via-[oklch(0.42_0.13_248/0.2)] lg:to-transparent" />
             </div>
 
             {/* Content Container (Overlays on desktop, flows below image on mobile) */}
