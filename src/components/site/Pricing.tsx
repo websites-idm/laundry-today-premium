@@ -5,13 +5,81 @@ import { Reveal, SectionTitle } from "./common";
 import { pricingData } from "./pricingData";
 import { openBooking } from "./BookingPopup";
 
+// Emojis for digital laundry bag visualization
+const getGarmentEmoji = (name: string): string => {
+  const normalized = name.toLowerCase();
+  if (normalized.includes("shoe") || normalized.includes("sneaker") || normalized.includes("sandals") || normalized.includes("boot") || normalized.includes("flops")) {
+    return "👟";
+  }
+  if (normalized.includes("blanket") || normalized.includes("quilt") || normalized.includes("bedsheet") || normalized.includes("towel") || normalized.includes("pillow") || normalized.includes("cushion") || normalized.includes("carpet") || normalized.includes("curtain") || normalized.includes("doormat")) {
+    return "🛏️";
+  }
+  if (normalized.includes("pant") || normalized.includes("jeans") || normalized.includes("trouser") || normalized.includes("shorts") || normalized.includes("skirt")) {
+    return "👖";
+  }
+  if (normalized.includes("jacket") || normalized.includes("coat") || normalized.includes("blazer") || normalized.includes("suit") || normalized.includes("sherwani") || normalized.includes("overcoat")) {
+    return "🧥";
+  }
+  if (normalized.includes("shirt") || normalized.includes("t-shirt") || normalized.includes("top") || normalized.includes("blouse") || normalized.includes("kurti") || normalized.includes("night suit") || normalized.includes("gown") || normalized.includes("saree") || normalized.includes("lehenga")) {
+    return "👕";
+  }
+  return "🧺"; // general laundry
+};
+
+// Weight estimates in kilograms for load calculation
+const estimateWeight = (name: string): number => {
+  const normalized = name.toLowerCase();
+  
+  if (normalized.includes("double blanket") || normalized.includes("double bed") || normalized.includes("quilt (double)")) {
+    return 2.0;
+  }
+  if (normalized.includes("single blanket") || normalized.includes("single bed") || normalized.includes("quilt (single)") || normalized.includes("carpet") || normalized.includes("rug")) {
+    return 1.2;
+  }
+  if (normalized.includes("bedsheet") || normalized.includes("bathrobe") || normalized.includes("towel (large)") || normalized.includes("bath towel")) {
+    return 0.6;
+  }
+  if (normalized.includes("pillow") || normalized.includes("cushion") || normalized.includes("trolley")) {
+    return 0.5;
+  }
+  if (normalized.includes("shoe") || normalized.includes("sneaker") || normalized.includes("boot")) {
+    return 0.8;
+  }
+  if (normalized.includes("sherwani") || normalized.includes("heavy gown") || normalized.includes("lehenga")) {
+    return 1.0;
+  }
+  if (normalized.includes("blazer") || normalized.includes("coat") || normalized.includes("suit") || normalized.includes("jacket") || normalized.includes("overcoat")) {
+    return 0.6;
+  }
+  if (normalized.includes("pant") || normalized.includes("jeans") || normalized.includes("trouser") || normalized.includes("saree") || normalized.includes("dhoti") || normalized.includes("jumpsuit")) {
+    return 0.4;
+  }
+  if (normalized.includes("sweatshirt") || normalized.includes("sweater") || normalized.includes("hoodie") || normalized.includes("kurta")) {
+    return 0.35;
+  }
+  if (normalized.includes("shirt") || normalized.includes("t-shirt") || normalized.includes("top") || normalized.includes("blouse") || normalized.includes("kurti") || normalized.includes("night suit")) {
+    return 0.2;
+  }
+  if (normalized.includes("shorts") || normalized.includes("skirt") || normalized.includes("scarf") || normalized.includes("dupatta") || normalized.includes("petticoat")) {
+    return 0.15;
+  }
+  if (normalized.includes("tie") || normalized.includes("muffler") || normalized.includes("cap") || normalized.includes("gloves") || normalized.includes("wallet")) {
+    return 0.08;
+  }
+  return 0.25; // default average
+};
+
 export function Pricing() {
   const [activeCategory, setActiveCategory] = useState("weight");
   const [activeSubCategory, setActiveSubCategory] = useState("Towels & Bedding");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Shopping Cart state
   const [cart, setCart] = useState<Record<string, { price: string; quantity: number }>>({});
+  
+  // Transient particles state for fly-to-cart animation
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; emoji: string }>>([]);
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -30,15 +98,27 @@ export function Pricing() {
     }
   };
 
+  // Fly particle trigger helper
+  const triggerFlyParticle = (itemName: string, e?: React.MouseEvent) => {
+    if (!e) return;
+    const emoji = getGarmentEmoji(itemName);
+    const id = Date.now() + Math.random();
+    setParticles((prev) => [...prev, { id, x: e.clientX, y: e.clientY, emoji }]);
+    setTimeout(() => {
+      setParticles((prev) => prev.filter((p) => p.id !== id));
+    }, 850);
+  };
+
   // Cart operations
-  const addToCart = (itemName: string, itemPrice: string) => {
+  const addToCart = (itemName: string, itemPrice: string, e?: React.MouseEvent) => {
     setCart((prev) => ({
       ...prev,
       [itemName]: { price: itemPrice, quantity: 1 },
     }));
+    triggerFlyParticle(itemName, e);
   };
 
-  const updateQuantity = (itemName: string, delta: number) => {
+  const updateQuantity = (itemName: string, delta: number, e?: React.MouseEvent) => {
     setCart((prev) => {
       const current = prev[itemName];
       if (!current) return prev;
@@ -53,6 +133,9 @@ export function Pricing() {
         [itemName]: { ...current, quantity: newQty },
       };
     });
+    if (delta > 0) {
+      triggerFlyParticle(itemName, e);
+    }
   };
 
   const cartItemsCount = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
@@ -102,16 +185,95 @@ export function Pricing() {
 
   const displayItems = searchQuery.trim() ? searchResults : currentItems;
 
+  // Estimation helpers
+  const totalWeight = Object.entries(cart).reduce((sum, [name, item]) => {
+    return sum + item.quantity * estimateWeight(name);
+  }, 0);
+
+  const totalPrice = Object.entries(cart).reduce((sum, [name, item]) => {
+    const match = item.price.match(/\d+/);
+    const val = match ? parseInt(match[0], 10) : 99;
+    return sum + item.quantity * val;
+  }, 0);
+
+  const getCartEmojisList = () => {
+    const list: string[] = [];
+    Object.entries(cart).forEach(([name, item]) => {
+      const emoji = getGarmentEmoji(name);
+      for (let i = 0; i < item.quantity; i++) {
+        list.push(emoji);
+      }
+    });
+    return list;
+  };
+
+  const renderGarmentsInBag = () => {
+    const list = getCartEmojisList();
+    return list.map((emoji, index) => {
+      const xOffset = ((index * 17) % 60) - 30; // spread elements slightly
+      const yOffset = ((index * 9) % 25);
+      return (
+        <motion.div
+          key={`${emoji}-${index}`}
+          initial={{ y: -180, opacity: 0, scale: 0.5, rotate: -60 }}
+          animate={{ y: 0, opacity: 1, scale: 1, rotate: ((index * 35) % 90) - 45 }}
+          transition={{
+            type: "spring",
+            stiffness: 180,
+            damping: 14,
+            mass: 0.9,
+            delay: Math.min(index * 0.04, 0.6), // delay staggered drops
+          }}
+          style={{
+            x: xOffset,
+            y: -yOffset,
+            zIndex: index + 1,
+          }}
+          className="text-3xl filter drop-shadow-soft select-none origin-bottom cursor-grab active:cursor-grabbing shrink-0"
+        >
+          {emoji}
+        </motion.div>
+      );
+    });
+  };
+
+  const isDryCleanItem = (name: string): boolean => {
+    const normalized = name.toLowerCase();
+    return normalized.includes("dry cleaning") || normalized.includes("dry clean") || normalized.includes("sherwani") || normalized.includes("blazer") || normalized.includes("coat") || normalized.includes("gown") || normalized.includes("saree") || normalized.includes("lehenga") || normalized.includes("wool") || normalized.includes("silk") || normalized.includes("leather");
+  };
+
+  const dryCleanCount = Object.keys(cart).filter(isDryCleanItem).reduce((sum, name) => sum + cart[name].quantity, 0);
+
+  const getAmbientGlowColor = () => {
+    switch (activeCategory) {
+      case "weight":
+        return "from-cyan-500/10";
+      case "shoes":
+        return "from-amber-500/10";
+      case "mens":
+        return "from-blue-600/10";
+      case "womens":
+        return "from-purple-500/10";
+      case "household":
+        return "from-emerald-500/10";
+      default:
+        return "from-primary/10";
+    }
+  };
+
   return (
-    <section id="pricing" className="bg-secondary py-20 sm:py-28 relative">
+    <section id="pricing" className="relative py-20 sm:py-28 text-foreground/80 overflow-hidden">
+      {/* Category-Specific Ambient Glow Shifts */}
+      <div className={`absolute inset-x-0 top-0 h-[600px] -z-10 bg-gradient-to-b ${getAmbientGlowColor()} to-transparent transition-all duration-1000 blur-[100px] opacity-70`} />
+      
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          ribbon="Pricing"
-          title="Service Pricing"
-          subtitle="Transparent pricing for every garment and household item. Select a category below to browse our complete service catalog."
+          ribbon="Transparent Rates"
+          title="Simple, Item-Wise Service Menu"
+          subtitle="Explore dry cleaning and laundry rates. Add items to estimate weight and loads."
         />
 
-        {/* Search Bar - Sticky on mobile under header */}
+        {/* Sticky Search bar */}
         <Reveal delay={0.08} className="mt-12 max-w-2xl mx-auto">
           <div className="sticky top-[68px] z-30 mb-8 px-1 sm:px-0">
             <div className="glass-card relative flex items-center rounded-full border-2 border-primary/10 shadow-soft px-5 py-3 bg-white/85 backdrop-blur-xl transition-all duration-300 focus-within:border-accent">
@@ -187,8 +349,8 @@ export function Pricing() {
                     </span>
                     {isSubActive && (
                       <motion.div
-                        layoutId="activeSubCategoryLine"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full"
+                        layoutId="activeSubTabLine"
+                        className="absolute bottom-0 inset-x-0 h-0.5 bg-accent"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -199,86 +361,34 @@ export function Pricing() {
           </Reveal>
         )}
 
-        {/* Category Count and Price Summary */}
-        <Reveal delay={0.2}>
-          <AnimatePresence mode="wait">
-            {!searchQuery.trim() ? (
-              <motion.div
-                key={activeCategory + (currentCategory.subCategories ? activeSubCategory : "")}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
-                className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-8"
-              >
-                <div>
-                  <h3 className="text-xl font-extrabold text-primary-deep">
-                    {currentCategory.name}
-                    {currentCategory.subCategories && ` › ${activeSubCategory}`}
-                  </h3>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Discover premium care for your garments and household items
-                  </p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/10 px-4 py-2.5 shadow-soft min-w-[100px]">
-                    <div className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider">Services</div>
-                    <div className="text-base font-extrabold text-primary-deep mt-0.5">
-                      {currentCategory.subCategories
-                        ? currentCategory.subCategories.find((s) => s.name === activeSubCategory)?.items.length
-                        : currentCategory.items?.length}{" "}
-                      items
-                    </div>
-                  </div>
-                  <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/10 px-4 py-2.5 shadow-soft min-w-[120px]">
-                    <div className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider">Starting From</div>
-                    <div className="text-base font-extrabold text-accent mt-0.5">
-                      {currentCategory.summary.startPrice}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ) : (
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-primary/10 pb-5 mb-8">
-                <div>
-                  <h3 className="text-xl font-extrabold text-primary-deep">Search Results</h3>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Matching garments found in our service catalog
-                  </p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/10 px-4 py-2.5 shadow-soft min-w-[110px]">
-                    <div className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider">Matches</div>
-                    <div className="text-base font-extrabold text-primary-deep mt-0.5">
-                      {searchResults.length} {searchResults.length === 1 ? "item" : "items"}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </AnimatePresence>
-        </Reveal>
-
-        {/* Grid of Pricing Cards */}
-        <Reveal delay={0.25}>
-          <motion.div layout="position" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Items Listing Grid */}
+        <Reveal delay={0.2} className="relative min-h-[250px]">
+          <motion.div
+            layout="position"
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
             <AnimatePresence mode="popLayout">
-              {displayItems.map((item, index) => {
+              {displayItems.map((item) => {
                 const quantity = cart[item.name]?.quantity || 0;
+
                 return (
                   <motion.div
-                    key={`${item.name}-${index}`}
+                    key={item.name}
                     layout
-                    initial={{ opacity: 0, scale: 0.96 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.22, delay: Math.min(index * 0.015, 0.15) }}
-                    className="glass-card lift relative flex items-center justify-between rounded-3xl border border-primary/10 bg-white/80 p-5 transition-colors duration-300 hover:border-accent hover:bg-white"
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.25 }}
+                    className={`glass-card flex items-center justify-between p-4.5 rounded-3xl border border-primary/10 bg-white transition-all duration-300 hover:border-accent/40 ${
+                      quantity > 0 ? "shadow-lift border-accent/40 scale-[1.01] bg-secondary/10" : "shadow-soft"
+                    }`}
                   >
-                    <div className="flex-1 min-w-0 pr-4">
-                      <h4 className="text-sm font-extrabold text-primary-deep truncate">{item.name}</h4>
+                    <div className="flex flex-col min-w-0 pr-2">
+                      <span className="text-sm font-extrabold text-primary-deep truncate">
+                        {item.name}
+                      </span>
                       {searchQuery.trim() && "categoryPath" in item && (
-                        <span className="mt-1 inline-flex items-center text-[8px] font-extrabold tracking-widest text-muted-foreground bg-secondary px-2 py-0.5 rounded-full uppercase">
+                        <span className="mt-1 inline-flex items-center text-[8px] font-extrabold tracking-widest text-muted-foreground bg-secondary px-2 py-0.5 rounded-full uppercase w-fit">
                           {item.categoryPath}
                         </span>
                       )}
@@ -289,7 +399,7 @@ export function Pricing() {
                       </span>
                       {quantity === 0 ? (
                         <button
-                          onClick={() => addToCart(item.name, item.price)}
+                          onClick={(e) => addToCart(item.name, item.price, e)}
                           suppressHydrationWarning
                           className="flex h-8 w-8 place-items-center justify-center rounded-full bg-secondary text-primary-deep hover:accent-gradient hover:text-accent-foreground transition-all duration-300 cursor-pointer shadow-soft border border-primary/10 active:scale-90"
                           title={`Add ${item.name} to order`}
@@ -299,7 +409,7 @@ export function Pricing() {
                       ) : (
                         <div className="flex items-center gap-2 bg-secondary border border-primary/10 rounded-full px-2 py-1 shadow-soft">
                           <button
-                            onClick={() => updateQuantity(item.name, -1)}
+                            onClick={(e) => updateQuantity(item.name, -1, e)}
                             suppressHydrationWarning
                             className="grid h-6 w-6 place-items-center rounded-full bg-white text-primary-deep hover:bg-primary-deep/5 transition-colors duration-200 cursor-pointer"
                           >
@@ -309,7 +419,7 @@ export function Pricing() {
                             {quantity}
                           </span>
                           <button
-                            onClick={() => updateQuantity(item.name, 1)}
+                            onClick={(e) => updateQuantity(item.name, 1, e)}
                             suppressHydrationWarning
                             className="grid h-6 w-6 place-items-center rounded-full bg-white text-primary-deep hover:bg-primary-deep/5 transition-colors duration-200 cursor-pointer"
                           >
@@ -356,7 +466,7 @@ export function Pricing() {
                 </span>
                 <div>
                   <div className="text-sm font-extrabold">{cartItemsCount} {cartItemsCount === 1 ? "item" : "items"} selected</div>
-                  <div className="text-[11px] text-white/80 font-medium">Ready to schedule pickup</div>
+                  <div className="text-[11px] text-white/80 font-medium">Est. Weight: ~{totalWeight.toFixed(1)} kg</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -368,7 +478,225 @@ export function Pricing() {
                   Clear
                 </button>
                 <button
+                  onClick={() => setIsDrawerOpen(true)}
+                  suppressHydrationWarning
+                  className="bg-white text-primary-deep rounded-full px-5 py-3 text-xs font-extrabold tracking-wider uppercase hover:bg-secondary transition-all active:scale-95 shadow-soft flex items-center gap-1.5 cursor-pointer border-0"
+                >
+                  <span>Review Order</span>
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Flying particles container */}
+      <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
+        <AnimatePresence>
+          {particles.map((p) => (
+            <motion.div
+              key={p.id}
+              initial={{ x: p.x, y: p.y, scale: 1.8, opacity: 1 }}
+              animate={{
+                x: window.innerWidth / 2,
+                y: window.innerHeight - 80,
+                scale: 0.6,
+                opacity: 0.1,
+              }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+              className="absolute text-2xl select-none"
+            >
+              {p.emoji}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Slide-Up Checkout Drawer */}
+      <AnimatePresence>
+        {isDrawerOpen && (
+          <>
+            {/* Dark backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsDrawerOpen(false)}
+              className="fixed inset-0 z-50 bg-primary-deep/50 backdrop-blur-md"
+            />
+
+            {/* Slide-up drawer container */}
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 220 }}
+              className="fixed inset-x-0 bottom-0 z-50 max-h-[92vh] rounded-t-[36px] bg-white border-t border-primary/10 shadow-lift overflow-hidden flex flex-col"
+            >
+              {/* Drag handle */}
+              <div className="flex justify-center py-3 shrink-0">
+                <div className="h-1.5 w-16 rounded-full bg-secondary hover:bg-muted-foreground/30 cursor-pointer" onClick={() => setIsDrawerOpen(false)} />
+              </div>
+
+              {/* Drawer Header */}
+              <div className="px-6 pb-4 border-b border-primary/5 flex items-center justify-between shrink-0">
+                <div>
+                  <h3 className="text-xl font-extrabold text-primary-deep flex items-center gap-2">
+                    <ClipboardList className="h-5.5 w-5.5 text-accent" />
+                    Review Your Laundry Load
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Verify estimated weight, garment separations, and proceed to book pickup.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsDrawerOpen(false)}
+                  className="grid h-8 w-8 place-items-center rounded-full bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary-deep cursor-pointer border-0"
+                >
+                  <X className="h-4.5 w-4.5" />
+                </button>
+              </div>
+
+              {/* Drawer Content Body */}
+              <div className="flex-1 overflow-y-auto no-scrollbar p-6">
+                <div className="grid gap-8 lg:grid-cols-12 max-w-6xl mx-auto h-full">
+                  {/* Left Column: Invoice Items List */}
+                  <div className="lg:col-span-7 flex flex-col">
+                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Garments Selection</h4>
+                    <div className="flex-1 space-y-3 max-h-[300px] lg:max-h-none overflow-y-auto pr-1 no-scrollbar">
+                      {Object.entries(cart).map(([name, item]) => (
+                        <div key={name} className="glass-card flex items-center justify-between p-3.5 rounded-2xl border border-primary/5 bg-secondary/30">
+                          <div className="flex items-center gap-3">
+                            <span className="text-xl select-none">{getGarmentEmoji(name)}</span>
+                            <div>
+                              <div className="text-sm font-bold text-primary-deep">{name}</div>
+                              <div className="text-[10px] text-muted-foreground mt-0.5">Est. weight: {estimateWeight(name)} kg/ea</div>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <span className="text-sm font-extrabold text-primary-deep pr-1">{item.price}</span>
+                            
+                            {/* Quantity Controls */}
+                            <div className="flex items-center gap-2 bg-white border border-primary/10 rounded-full px-1.5 py-0.5 shadow-soft">
+                              <button
+                                onClick={(e) => updateQuantity(name, -1, e)}
+                                className="grid h-5.5 w-5.5 place-items-center rounded-full bg-secondary text-primary-deep hover:bg-primary-deep/5 transition-colors cursor-pointer border-0"
+                              >
+                                <Minus className="h-2.5 w-2.5" />
+                              </button>
+                              <span className="text-xs font-extrabold text-primary-deep min-w-[12px] text-center">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={(e) => updateQuantity(name, 1, e)}
+                                className="grid h-5.5 w-5.5 place-items-center rounded-full bg-secondary text-primary-deep hover:bg-primary-deep/5 transition-colors cursor-pointer border-0"
+                              >
+                                <Plus className="h-2.5 w-2.5" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Column: Visual Physics Laundry Bag & Estimations */}
+                  <div className="lg:col-span-5 flex flex-col gap-6">
+                    {/* Visual Laundry Bag Container */}
+                    <div className="glass-card flex-1 flex flex-col items-center justify-center p-6 rounded-3xl border border-primary/10 bg-secondary/20 relative min-h-[260px] overflow-hidden">
+                      <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3 absolute top-4">Interactive Bag Simulator</h4>
+                      
+                      {/* Virtual Bag Canvas */}
+                      <div className="relative w-52 h-56 flex items-end justify-center mt-6">
+                        {/* Styled SVG Laundry Bag Background */}
+                        <svg
+                          viewBox="0 0 100 110"
+                          className="absolute inset-0 w-full h-full text-primary/10 drop-shadow-soft"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M20,10 C25,5 35,2 50,2 C65,2 75,5 80,10 C85,25 95,50 95,85 C95,100 85,110 50,110 C15,110 5,100 5,85 C5,50 15,25 20,10 Z"
+                          />
+                        </svg>
+
+                        {/* Interactive Emojis Inside Bag Container */}
+                        <div className="absolute inset-x-4 bottom-4 top-10 overflow-hidden flex flex-wrap-reverse content-start justify-center gap-1.5 p-3 select-none">
+                          {renderGarmentsInBag()}
+                        </div>
+
+                        {/* Drawstring ties at top of bag */}
+                        <div className="absolute top-2 w-12 h-4 border-b-2 border-dashed border-accent/40" />
+                      </div>
+                    </div>
+
+                    {/* Weight and Load Estimations Card */}
+                    <div className="glass-card p-5 rounded-3xl border border-primary/10 bg-white shadow-soft space-y-4">
+                      <h4 className="text-xs font-bold text-primary-deep border-b border-primary/5 pb-2">Load Estimations</h4>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-secondary/40 p-3 rounded-2xl border border-primary/5">
+                          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Est. Total Weight</div>
+                          <div className="text-lg font-extrabold text-accent mt-0.5">{totalWeight.toFixed(2)} kg</div>
+                        </div>
+
+                        <div className="bg-secondary/40 p-3 rounded-2xl border border-primary/5">
+                          <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Total Est. Price</div>
+                          <div className="text-lg font-extrabold text-primary-deep mt-0.5">₹{totalPrice}</div>
+                        </div>
+                      </div>
+
+                      {/* Machine Loads Estimation */}
+                      <div className="flex items-start gap-3 bg-secondary/20 p-3 rounded-2xl border border-primary/5">
+                        <Scale className="h-5 w-5 text-primary shrink-0 mt-0.5 animate-pulse" />
+                        <div>
+                          <div className="text-xs font-bold text-primary-deep">
+                            {totalWeight <= 6 ? "🧺 Fits in 1 Machine Load" : `🧺 Requires ~${Math.ceil(totalWeight / 6)} Machine Loads`}
+                          </div>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">
+                            Estimated load size. One standard washing machine cycle handles up to 6 kg.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Delicate separations notice */}
+                      {dryCleanCount > 0 && (
+                        <div className="flex items-start gap-3 bg-accent/10 p-3 rounded-2xl border border-accent/5">
+                          <Sparkles className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                          <div>
+                            <div className="text-xs font-bold text-accent">
+                              ✨ {dryCleanCount} dry-clean {dryCleanCount === 1 ? "item" : "items"} separated
+                            </div>
+                            <p className="text-[10px] text-muted-foreground mt-0.5">
+                              Delicate clothes will be treated with premium organic cleaning solvents separately.
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Disclaimer info */}
+                      <p className="text-[9px] text-muted-foreground/75 leading-normal">
+                        *Estimated weights are guidelines for user reference. Final laundry weight and details will be verified by our rider during pickup.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Drawer Footer Actions */}
+              <div className="px-6 py-5 border-t border-primary/5 bg-secondary/30 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
+                <div className="text-center sm:text-left">
+                  <div className="text-xs text-muted-foreground">Est. Booking Total:</div>
+                  <div className="text-2xl font-extrabold text-primary-deep leading-tight">₹{totalPrice}</div>
+                </div>
+                <button
                   onClick={() => {
+                    setIsDrawerOpen(false);
                     const cartItemsArray = Object.entries(cart).map(([name, info]) => ({
                       name,
                       price: info.price,
@@ -377,17 +705,16 @@ export function Pricing() {
                     openBooking(undefined, cartItemsArray);
                   }}
                   suppressHydrationWarning
-                  className="bg-white text-primary-deep rounded-full px-5 py-3 text-xs font-extrabold tracking-wider uppercase hover:bg-secondary transition-all active:scale-95 shadow-soft flex items-center gap-1.5 cursor-pointer border-0"
+                  className="accent-gradient rounded-full w-full sm:w-auto px-10 py-4 text-sm font-extrabold text-accent-foreground shadow-lift hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer border-0"
                 >
-                  <span>Book Order</span>
-                  <ChevronRight className="h-3.5 w-3.5" />
+                  <span>Book Pickup & Confirm</span>
+                  <ChevronRight className="h-4.5 w-4.5" />
                 </button>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </section>
   );
 }
-
