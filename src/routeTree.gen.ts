@@ -10,33 +10,309 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AreasWeServeRouteImport } from './routes/areas-we-serve'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as BookPickupRouteImport } from './routes/book-pickup'
+import { Route as CommercialRouteImport } from './routes/commercial'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesBlanketCleaningRouteImport } from './routes/services.blanket-cleaning'
+import { Route as ServicesCarpetCleaningRouteImport } from './routes/services.carpet-cleaning'
+import { Route as ServicesCommercialLaundryRouteImport } from './routes/services.commercial-laundry'
+import { Route as ServicesCurtainCleaningRouteImport } from './routes/services.curtain-cleaning'
+import { Route as ServicesDryCleaningRouteImport } from './routes/services.dry-cleaning'
+import { Route as ServicesExpressLaundryRouteImport } from './routes/services.express-laundry'
+import { Route as ServicesShoeCleaningRouteImport } from './routes/services.shoe-cleaning'
+import { Route as ServicesSofaCleaningRouteImport } from './routes/services.sofa-cleaning'
+import { Route as ServicesSteamIroningRouteImport } from './routes/services.steam-ironing'
+import { Route as ServicesWashFoldRouteImport } from './routes/services.wash-fold'
+import { Route as ServicesWashIronRouteImport } from './routes/services.wash-iron'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AreasWeServeRoute = AreasWeServeRouteImport.update({
+  id: '/areas-we-serve',
+  path: '/areas-we-serve',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookPickupRoute = BookPickupRouteImport.update({
+  id: '/book-pickup',
+  path: '/book-pickup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommercialRoute = CommercialRouteImport.update({
+  id: '/commercial',
+  path: '/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesBlanketCleaningRoute = ServicesBlanketCleaningRouteImport.update({
+  id: '/blanket-cleaning',
+  path: '/blanket-cleaning',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCarpetCleaningRoute = ServicesCarpetCleaningRouteImport.update({
+  id: '/carpet-cleaning',
+  path: '/carpet-cleaning',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCommercialLaundryRoute =
+  ServicesCommercialLaundryRouteImport.update({
+    id: '/commercial-laundry',
+    path: '/commercial-laundry',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesCurtainCleaningRoute = ServicesCurtainCleaningRouteImport.update({
+  id: '/curtain-cleaning',
+  path: '/curtain-cleaning',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesDryCleaningRoute = ServicesDryCleaningRouteImport.update({
+  id: '/dry-cleaning',
+  path: '/dry-cleaning',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesExpressLaundryRoute = ServicesExpressLaundryRouteImport.update({
+  id: '/express-laundry',
+  path: '/express-laundry',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesShoeCleaningRoute = ServicesShoeCleaningRouteImport.update({
+  id: '/shoe-cleaning',
+  path: '/shoe-cleaning',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSofaCleaningRoute = ServicesSofaCleaningRouteImport.update({
+  id: '/sofa-cleaning',
+  path: '/sofa-cleaning',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSteamIroningRoute = ServicesSteamIroningRouteImport.update({
+  id: '/steam-ironing',
+  path: '/steam-ironing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesWashFoldRoute = ServicesWashFoldRouteImport.update({
+  id: '/wash-fold',
+  path: '/wash-fold',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesWashIronRoute = ServicesWashIronRouteImport.update({
+  id: '/wash-iron',
+  path: '/wash-iron',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/areas-we-serve': typeof AreasWeServeRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/book-pickup': typeof BookPickupRoute
+  '/commercial': typeof CommercialRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/pricing': typeof PricingRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
+  '/services/blanket-cleaning': typeof ServicesBlanketCleaningRoute
+  '/services/carpet-cleaning': typeof ServicesCarpetCleaningRoute
+  '/services/commercial-laundry': typeof ServicesCommercialLaundryRoute
+  '/services/curtain-cleaning': typeof ServicesCurtainCleaningRoute
+  '/services/dry-cleaning': typeof ServicesDryCleaningRoute
+  '/services/express-laundry': typeof ServicesExpressLaundryRoute
+  '/services/shoe-cleaning': typeof ServicesShoeCleaningRoute
+  '/services/sofa-cleaning': typeof ServicesSofaCleaningRoute
+  '/services/steam-ironing': typeof ServicesSteamIroningRoute
+  '/services/wash-fold': typeof ServicesWashFoldRoute
+  '/services/wash-iron': typeof ServicesWashIronRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/areas-we-serve': typeof AreasWeServeRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/book-pickup': typeof BookPickupRoute
+  '/commercial': typeof CommercialRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/pricing': typeof PricingRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/services/blanket-cleaning': typeof ServicesBlanketCleaningRoute
+  '/services/carpet-cleaning': typeof ServicesCarpetCleaningRoute
+  '/services/commercial-laundry': typeof ServicesCommercialLaundryRoute
+  '/services/curtain-cleaning': typeof ServicesCurtainCleaningRoute
+  '/services/dry-cleaning': typeof ServicesDryCleaningRoute
+  '/services/express-laundry': typeof ServicesExpressLaundryRoute
+  '/services/shoe-cleaning': typeof ServicesShoeCleaningRoute
+  '/services/sofa-cleaning': typeof ServicesSofaCleaningRoute
+  '/services/steam-ironing': typeof ServicesSteamIroningRoute
+  '/services/wash-fold': typeof ServicesWashFoldRoute
+  '/services/wash-iron': typeof ServicesWashIronRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/areas-we-serve': typeof AreasWeServeRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/book-pickup': typeof BookPickupRoute
+  '/commercial': typeof CommercialRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/pricing': typeof PricingRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
+  '/services/blanket-cleaning': typeof ServicesBlanketCleaningRoute
+  '/services/carpet-cleaning': typeof ServicesCarpetCleaningRoute
+  '/services/commercial-laundry': typeof ServicesCommercialLaundryRoute
+  '/services/curtain-cleaning': typeof ServicesCurtainCleaningRoute
+  '/services/dry-cleaning': typeof ServicesDryCleaningRoute
+  '/services/express-laundry': typeof ServicesExpressLaundryRoute
+  '/services/shoe-cleaning': typeof ServicesShoeCleaningRoute
+  '/services/sofa-cleaning': typeof ServicesSofaCleaningRoute
+  '/services/steam-ironing': typeof ServicesSteamIroningRoute
+  '/services/wash-fold': typeof ServicesWashFoldRoute
+  '/services/wash-iron': typeof ServicesWashIronRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/areas-we-serve'
+    | '/blog'
+    | '/book-pickup'
+    | '/commercial'
+    | '/contact'
+    | '/faq'
+    | '/pricing'
+    | '/services'
+    | '/blog/$slug'
+    | '/services/blanket-cleaning'
+    | '/services/carpet-cleaning'
+    | '/services/commercial-laundry'
+    | '/services/curtain-cleaning'
+    | '/services/dry-cleaning'
+    | '/services/express-laundry'
+    | '/services/shoe-cleaning'
+    | '/services/sofa-cleaning'
+    | '/services/steam-ironing'
+    | '/services/wash-fold'
+    | '/services/wash-iron'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/areas-we-serve'
+    | '/blog'
+    | '/book-pickup'
+    | '/commercial'
+    | '/contact'
+    | '/faq'
+    | '/pricing'
+    | '/blog/$slug'
+    | '/services/blanket-cleaning'
+    | '/services/carpet-cleaning'
+    | '/services/commercial-laundry'
+    | '/services/curtain-cleaning'
+    | '/services/dry-cleaning'
+    | '/services/express-laundry'
+    | '/services/shoe-cleaning'
+    | '/services/sofa-cleaning'
+    | '/services/steam-ironing'
+    | '/services/wash-fold'
+    | '/services/wash-iron'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/areas-we-serve'
+    | '/blog'
+    | '/book-pickup'
+    | '/commercial'
+    | '/contact'
+    | '/faq'
+    | '/pricing'
+    | '/services'
+    | '/blog/$slug'
+    | '/services/blanket-cleaning'
+    | '/services/carpet-cleaning'
+    | '/services/commercial-laundry'
+    | '/services/curtain-cleaning'
+    | '/services/dry-cleaning'
+    | '/services/express-laundry'
+    | '/services/shoe-cleaning'
+    | '/services/sofa-cleaning'
+    | '/services/steam-ironing'
+    | '/services/wash-fold'
+    | '/services/wash-iron'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AreasWeServeRoute: typeof AreasWeServeRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  BookPickupRoute: typeof BookPickupRoute
+  CommercialRoute: typeof CommercialRoute
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
+  PricingRoute: typeof PricingRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +324,218 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/areas-we-serve': {
+      id: '/areas-we-serve'
+      path: '/areas-we-serve'
+      fullPath: '/areas-we-serve'
+      preLoaderRoute: typeof AreasWeServeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book-pickup': {
+      id: '/book-pickup'
+      path: '/book-pickup'
+      fullPath: '/book-pickup'
+      preLoaderRoute: typeof BookPickupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial': {
+      id: '/commercial'
+      path: '/commercial'
+      fullPath: '/commercial'
+      preLoaderRoute: typeof CommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/blanket-cleaning': {
+      id: '/services/blanket-cleaning'
+      path: '/blanket-cleaning'
+      fullPath: '/services/blanket-cleaning'
+      preLoaderRoute: typeof ServicesBlanketCleaningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/carpet-cleaning': {
+      id: '/services/carpet-cleaning'
+      path: '/carpet-cleaning'
+      fullPath: '/services/carpet-cleaning'
+      preLoaderRoute: typeof ServicesCarpetCleaningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/commercial-laundry': {
+      id: '/services/commercial-laundry'
+      path: '/commercial-laundry'
+      fullPath: '/services/commercial-laundry'
+      preLoaderRoute: typeof ServicesCommercialLaundryRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/curtain-cleaning': {
+      id: '/services/curtain-cleaning'
+      path: '/curtain-cleaning'
+      fullPath: '/services/curtain-cleaning'
+      preLoaderRoute: typeof ServicesCurtainCleaningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/dry-cleaning': {
+      id: '/services/dry-cleaning'
+      path: '/dry-cleaning'
+      fullPath: '/services/dry-cleaning'
+      preLoaderRoute: typeof ServicesDryCleaningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/express-laundry': {
+      id: '/services/express-laundry'
+      path: '/express-laundry'
+      fullPath: '/services/express-laundry'
+      preLoaderRoute: typeof ServicesExpressLaundryRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/shoe-cleaning': {
+      id: '/services/shoe-cleaning'
+      path: '/shoe-cleaning'
+      fullPath: '/services/shoe-cleaning'
+      preLoaderRoute: typeof ServicesShoeCleaningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/sofa-cleaning': {
+      id: '/services/sofa-cleaning'
+      path: '/sofa-cleaning'
+      fullPath: '/services/sofa-cleaning'
+      preLoaderRoute: typeof ServicesSofaCleaningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/steam-ironing': {
+      id: '/services/steam-ironing'
+      path: '/steam-ironing'
+      fullPath: '/services/steam-ironing'
+      preLoaderRoute: typeof ServicesSteamIroningRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/wash-fold': {
+      id: '/services/wash-fold'
+      path: '/wash-fold'
+      fullPath: '/services/wash-fold'
+      preLoaderRoute: typeof ServicesWashFoldRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/wash-iron': {
+      id: '/services/wash-iron'
+      path: '/wash-iron'
+      fullPath: '/services/wash-iron'
+      preLoaderRoute: typeof ServicesWashIronRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
+interface ServicesRouteChildren {
+  ServicesBlanketCleaningRoute: typeof ServicesBlanketCleaningRoute
+  ServicesCarpetCleaningRoute: typeof ServicesCarpetCleaningRoute
+  ServicesCommercialLaundryRoute: typeof ServicesCommercialLaundryRoute
+  ServicesCurtainCleaningRoute: typeof ServicesCurtainCleaningRoute
+  ServicesDryCleaningRoute: typeof ServicesDryCleaningRoute
+  ServicesExpressLaundryRoute: typeof ServicesExpressLaundryRoute
+  ServicesShoeCleaningRoute: typeof ServicesShoeCleaningRoute
+  ServicesSofaCleaningRoute: typeof ServicesSofaCleaningRoute
+  ServicesSteamIroningRoute: typeof ServicesSteamIroningRoute
+  ServicesWashFoldRoute: typeof ServicesWashFoldRoute
+  ServicesWashIronRoute: typeof ServicesWashIronRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesBlanketCleaningRoute: ServicesBlanketCleaningRoute,
+  ServicesCarpetCleaningRoute: ServicesCarpetCleaningRoute,
+  ServicesCommercialLaundryRoute: ServicesCommercialLaundryRoute,
+  ServicesCurtainCleaningRoute: ServicesCurtainCleaningRoute,
+  ServicesDryCleaningRoute: ServicesDryCleaningRoute,
+  ServicesExpressLaundryRoute: ServicesExpressLaundryRoute,
+  ServicesShoeCleaningRoute: ServicesShoeCleaningRoute,
+  ServicesSofaCleaningRoute: ServicesSofaCleaningRoute,
+  ServicesSteamIroningRoute: ServicesSteamIroningRoute,
+  ServicesWashFoldRoute: ServicesWashFoldRoute,
+  ServicesWashIronRoute: ServicesWashIronRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AreasWeServeRoute: AreasWeServeRoute,
+  BlogRoute: BlogRouteWithChildren,
+  BookPickupRoute: BookPickupRoute,
+  CommercialRoute: CommercialRoute,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
+  PricingRoute: PricingRoute,
+  ServicesRoute: ServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

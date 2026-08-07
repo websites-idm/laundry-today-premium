@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { Phone, CalendarClock, Tag, MessageSquare } from "lucide-react";
 import { motion } from "motion/react";
+import { Link } from "@tanstack/react-router";
 import { openBooking } from "./BookingPopup";
 
 export function FloatingBar() {
   const [activeTab, setActiveTab] = useState("prices");
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash === "#pricing") setActiveTab("prices");
-      else if (hash === "#contact") setActiveTab("contact");
-    };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    if (typeof window !== "undefined") {
+      const handlePathChange = () => {
+        const path = window.location.pathname;
+        if (path === "/pricing") setActiveTab("prices");
+        else if (path === "/contact") setActiveTab("contact");
+        else if (path === "/") setActiveTab("home");
+      };
+      handlePathChange();
+      window.addEventListener("popstate", handlePathChange);
+      return () => window.removeEventListener("popstate", handlePathChange);
+    }
   }, []);
 
   const handleTabClick = (tabId: string) => {
@@ -83,12 +88,12 @@ export function FloatingBar() {
         </button>
 
         {/* Item 4: Prices */}
-        <a
-          href="#pricing"
+        <Link
+          to="/pricing"
           onClick={() => handleTabClick("prices")}
-          className={`flex flex-col items-center justify-center py-1 w-12 transition-all duration-200 active:scale-90 cursor-pointer bg-transparent border-0 decoration-none ${
-            activeTab === "prices" ? "text-primary-deep" : "text-slate-400 hover:text-slate-600"
-          }`}
+          activeProps={{ className: "text-primary-deep" }}
+          inactiveProps={{ className: "text-slate-400 hover:text-slate-600" }}
+          className="flex flex-col items-center justify-center py-1 w-12 transition-all duration-200 active:scale-90 cursor-pointer bg-transparent border-0 decoration-none"
           aria-label="Service Prices"
         >
           <Tag className="h-5.5 w-5.5" />
@@ -99,15 +104,15 @@ export function FloatingBar() {
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
             />
           )}
-        </a>
+        </Link>
 
         {/* Item 5: Contact */}
-        <a
-          href="#contact"
+        <Link
+          to="/contact"
           onClick={() => handleTabClick("contact")}
-          className={`flex flex-col items-center justify-center py-1 w-12 transition-all duration-200 active:scale-90 cursor-pointer bg-transparent border-0 decoration-none ${
-            activeTab === "contact" ? "text-primary-deep" : "text-slate-400 hover:text-slate-600"
-          }`}
+          activeProps={{ className: "text-primary-deep" }}
+          inactiveProps={{ className: "text-slate-400 hover:text-slate-600" }}
+          className="flex flex-col items-center justify-center py-1 w-12 transition-all duration-200 active:scale-90 cursor-pointer bg-transparent border-0 decoration-none"
           aria-label="Contact Section"
         >
           <MessageSquare className="h-5.5 w-5.5" />
@@ -118,7 +123,7 @@ export function FloatingBar() {
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
             />
           )}
-        </a>
+        </Link>
 
       </div>
     </div>

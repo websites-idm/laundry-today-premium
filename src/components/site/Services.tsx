@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Reveal, SectionTitle } from "./common";
 import { openBooking } from "./BookingPopup";
 import wash from "@/assets/svc-wash.jpg";
@@ -10,19 +11,23 @@ import iron from "@/assets/svc-iron.jpg";
 import shoe from "@/assets/svc-shoe.jpg";
 import curtain from "@/assets/svc-curtain.jpg";
 import blanket from "@/assets/svc-blanket.jpg";
+import carpet from "@/assets/svc-carpet.jpg";
+import sofa from "@/assets/svc-sofa.jpg";
 import commercial from "@/assets/svc-commercial.jpg";
 import delivery from "@/assets/svc-delivery.jpg";
 
 const services = [
-  { img: wash, title: "Wash & Fold", copy: "Everyday laundry washed, dried and neatly folded." },
-  { img: washIron, title: "Wash & Iron", copy: "Everyday laundry washed, dried, and steam ironed to perfection." },
-  { img: dry, title: "Dry Cleaning", copy: "Men's wear & women's wear, synthetic wear wedding wear & Delicates treated with care." },
-  { img: iron, title: "Steam Ironing", copy: "Crisp, press-perfect finish on shirts and trousers." },
-  { img: shoe, title: "Shoe Cleaning", copy: "Sneakers and leather restored and deodorised." },
-  { img: curtain, title: "Curtain dry Cleaning", copy: "Take-down, deep clean and re-hang available." },
-  { img: blanket, title: "Blankets & Duvets", copy: "Bulky bedding & Quilt washed in oversized machines." },
-  { img: commercial, title: "Commercial Laundry", copy: "Hotels, gyms,restaurants and industrial etc., on contract rates." },
-  { img: delivery, title: "Pickup & Delivery", copy: "Free two-way collection across the city." },
+  { id: "wash-fold", img: wash, title: "Wash & Fold", copy: "Everyday laundry washed, dried and neatly folded." },
+  { id: "wash-iron", img: washIron, title: "Wash & Iron", copy: "Everyday laundry washed, dried, and steam ironed to perfection." },
+  { id: "dry-cleaning", img: dry, title: "Dry Cleaning", copy: "Men's wear & women's wear, synthetic wear wedding wear & Delicates treated with care." },
+  { id: "steam-ironing", img: iron, title: "Steam Ironing", copy: "Crisp, press-perfect finish on shirts and trousers." },
+  { id: "shoe-cleaning", img: shoe, title: "Shoe Cleaning", copy: "Sneakers and leather restored and deodorised." },
+  { id: "curtain-cleaning", img: curtain, title: "Curtain dry Cleaning", copy: "Take-down, deep clean and re-hang available." },
+  { id: "carpet-cleaning", img: carpet, title: "Carpet Cleaning", copy: "Premium oriental rugs and carpets restored." },
+  { id: "blanket-cleaning", img: blanket, title: "Blankets & Duvets", copy: "Bulky bedding & Quilt washed in oversized machines." },
+  { id: "sofa-cleaning", img: sofa, title: "Sofa Cleaning", copy: "Premium fabric and leather sofa sanitization." },
+  { id: "commercial-laundry", img: commercial, title: "Commercial Laundry", copy: "Hotels, gyms,restaurants and industrial etc., on contract rates." },
+  { id: "express-laundry", img: delivery, title: "Express Laundry", copy: "Next-day and same-day express wash services." },
 ];
 
 export function Services() {
@@ -32,14 +37,12 @@ export function Services() {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // Client-side resize listener to handle responsiveness
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWidth(window.innerWidth);
-      const handleResize = () => setWidth(window.innerWidth);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
+    if (typeof window === "undefined") return;
+    setWidth(window.innerWidth);
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const isMobile = width < 640;
@@ -221,17 +224,23 @@ export function Services() {
                           <p className="mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground line-clamp-2 sm:line-clamp-none">{s.copy}</p>
                         </div>
                       </div>
-                      <div className="p-5 pt-0">
+                      <div className="p-5 pt-0 flex gap-2.5">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             openBooking(s.title);
                           }}
                           suppressHydrationWarning
-                          className="accent-gradient w-full flex items-center justify-center gap-2 rounded-2xl py-2.5 text-xs font-bold text-accent-foreground shadow-soft transition-all duration-300 hover:brightness-105 active:scale-[0.98] cursor-pointer border-0"
+                          className="accent-gradient flex-1 flex items-center justify-center gap-2 rounded-2xl py-2.5 text-xs font-bold text-accent-foreground shadow-soft transition-all duration-300 hover:brightness-105 active:scale-[0.98] cursor-pointer border-0"
                         >
                           Book Now
                         </button>
+                        <Link
+                          to={`/services/${s.id}` as any}
+                          className="flex-1 inline-flex items-center justify-center gap-1 rounded-2xl bg-secondary hover:bg-slate-200 text-primary-deep text-xs font-bold transition-all border border-slate-200 text-center py-2.5 decoration-none"
+                        >
+                          <span>Details</span>
+                        </Link>
                       </div>
                     </article>
                   </motion.div>

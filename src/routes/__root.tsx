@@ -72,6 +72,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+import { Nav } from "../components/site/Nav";
+import { Footer } from "../components/site/Footer";
+import { FloatingBar } from "../components/site/FloatingBar";
+import { BookingPopup } from "../components/site/BookingPopup";
+import { LeftQuickContact } from "../components/site/LeftQuickContact";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -125,10 +131,41 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    let cleanup = () => {};
+    let cancelled = false;
+    import("lenis").then(({ default: Lenis }) => {
+      if (cancelled) return;
+      const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+      let raf = 0;
+      const loop = (time: number) => {
+        lenis.raf(time);
+        raf = requestAnimationFrame(loop);
+      };
+      raf = requestAnimationFrame(loop);
+      cleanup = () => {
+        cancelAnimationFrame(raf);
+        lenis.destroy();
+      };
+    });
+    return () => {
+      cancelled = true;
+      cleanup();
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen bg-background flex flex-col justify-between">
+        <Nav />
+        <main className="flex-grow">
+          <Outlet />
+        </main>
+        <Footer />
+        <FloatingBar />
+        <BookingPopup />
+        <LeftQuickContact />
+      </div>
     </QueryClientProvider>
   );
 }

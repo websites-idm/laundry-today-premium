@@ -69,10 +69,18 @@ const estimateWeight = (name: string): number => {
   return 0.25; // default average
 };
 
-export function Pricing() {
-  const [activeCategory, setActiveCategory] = useState("weight");
+export function Pricing({
+  defaultCategory = "weight",
+  filterQuery = "",
+  hideTitle = false
+}: {
+  defaultCategory?: string;
+  filterQuery?: string;
+  hideTitle?: boolean;
+} = {}) {
+  const [activeCategory, setActiveCategory] = useState(defaultCategory);
   const [activeSubCategory, setActiveSubCategory] = useState("Towels & Bedding");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(filterQuery);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Shopping Cart state
@@ -267,11 +275,13 @@ export function Pricing() {
       <div className={`absolute inset-x-0 top-0 h-[600px] -z-10 bg-gradient-to-b ${getAmbientGlowColor()} to-transparent transition-all duration-1000 blur-[100px] opacity-70`} />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          ribbon="Transparent Rates"
-          title="Simple, Item-Wise Service Menu"
-          subtitle="Explore dry cleaning and laundry rates. Add items to estimate weight and loads."
-        />
+        {!hideTitle && (
+          <SectionTitle
+            ribbon="Transparent Rates"
+            title="Simple, Item-Wise Service Menu"
+            subtitle="Explore dry cleaning and laundry rates. Add items to estimate weight and loads."
+          />
+        )}
 
         {/* Sticky Search bar */}
         <Reveal delay={0.08} className="mt-12 max-w-2xl mx-auto">

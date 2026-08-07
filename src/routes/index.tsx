@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
-import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
 import { WhyUs } from "@/components/site/WhyUs";
@@ -11,10 +9,6 @@ import { Reviews } from "@/components/site/Reviews";
 import { Gallery } from "@/components/site/Gallery";
 import { Faq } from "@/components/site/Faq";
 import { Contact } from "@/components/site/Contact";
-import { Footer } from "@/components/site/Footer";
-import { FloatingBar } from "@/components/site/FloatingBar";
-import { BookingPopup } from "@/components/site/BookingPopup";
-import { LeftQuickContact } from "@/components/site/LeftQuickContact";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,48 +33,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  useEffect(() => {
-    let cleanup = () => {};
-    let cancelled = false;
-    import("lenis").then(({ default: Lenis }) => {
-      if (cancelled) return;
-      const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-      let raf = 0;
-      const loop = (time: number) => {
-        lenis.raf(time);
-        raf = requestAnimationFrame(loop);
-      };
-      raf = requestAnimationFrame(loop);
-      cleanup = () => {
-        cancelAnimationFrame(raf);
-        lenis.destroy();
-      };
-    });
-    return () => {
-      cancelled = true;
-      cleanup();
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background">
-      <Nav />
-      <main>
-        <Hero />
-        <About />
-        <WhyUs />
-        <Services />
-        <HowItWorks />
-        <Pricing />
-        <Reviews />
-        <Gallery />
-        <Faq />
-        <Contact />
-      </main>
-      <Footer />
-      <FloatingBar />
-      <BookingPopup />
-      <LeftQuickContact />
-    </div>
+    <>
+      <Hero />
+      <About />
+      <WhyUs />
+      <Services />
+      <HowItWorks />
+      <Pricing />
+      <Reviews />
+      <Gallery />
+      <Faq />
+      <Contact />
+    </>
   );
 }

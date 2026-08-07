@@ -5,7 +5,7 @@ import { SectionTitle } from "./common";
 const faqs = [
   {
     q: "How does free pickup and delivery work?",
-    a: "Choose a one-hour slot when you book. Our rider arrives with a sealed Laundry Today bag, scans your order and returns it to the same address once cleaned. Both trips are always free.",
+    a: "Minimum order value is ₹399. Choose your preferred pickup time slot while booking. Our rider will arrive at your selected time to collect your laundry and deliver it back once professionally cleaned.",
   },
   {
     q: "How fast is the turnaround?",

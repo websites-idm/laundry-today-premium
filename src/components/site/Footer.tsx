@@ -1,7 +1,24 @@
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
-const quick = ["Home", "Services", "Pricing", "About", "Contact"];
-const services = ["Wash & Fold", "Dry Cleaning", "Steam Ironing", "Shoe Cleaning", "Commercial"];
+const quickLinks = [
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Pricing", to: "/pricing" },
+  { label: "Areas We Serve", to: "/areas-we-serve" },
+  { label: "FAQ", to: "/faq" },
+  { label: "Contact", to: "/contact" },
+];
+
+const serviceLinks = [
+  { label: "Wash & Fold", to: "/services/wash-fold" },
+  { label: "Wash & Iron", to: "/services/wash-iron" },
+  { label: "Dry Cleaning", to: "/services/dry-cleaning" },
+  { label: "Steam Ironing", to: "/services/steam-ironing" },
+  { label: "Shoe Cleaning", to: "/services/shoe-cleaning" },
+  { label: "Commercial Laundry", to: "/commercial" },
+];
 
 export function Footer() {
   return (
@@ -21,14 +38,14 @@ export function Footer() {
             </p>
             <div className="mt-5 flex gap-2">
               {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-                <a
+                <Link
                   key={i}
-                  href="#contact"
+                  to="/contact"
                   aria-label="Social link"
                   className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   <Icon className="h-4.5 w-4.5" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -36,14 +53,14 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-extrabold tracking-[0.18em] uppercase">Quick Links</h3>
             <ul className="mt-4 space-y-2.5">
-              {quick.map((q) => (
-                <li key={q}>
-                  <a
-                    href={`#${q.toLowerCase()}`}
+              {quickLinks.map((q) => (
+                <li key={q.label}>
+                  <Link
+                    to={q.to}
                     className="text-sm text-muted-foreground transition-colors hover:text-primary-deep"
                   >
-                    {q}
-                  </a>
+                    {q.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -52,14 +69,14 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-extrabold tracking-[0.18em] uppercase">Services</h3>
             <ul className="mt-4 space-y-2.5">
-              {services.map((s) => (
-                <li key={s}>
-                  <a
-                    href="#services"
+              {serviceLinks.map((s) => (
+                <li key={s.label}>
+                  <Link
+                    to={s.to}
                     className="text-sm text-muted-foreground transition-colors hover:text-primary-deep"
                   >
-                    {s}
-                  </a>
+                    {s.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -87,9 +104,13 @@ export function Footer() {
               </button>
             </form>
             <p className="mt-4 text-sm text-muted-foreground">
-              hello@laundrytoday.com
+              <a href="mailto:LAUNDRYTODAY01@gmail.com" className="hover:text-primary transition-colors">
+                LAUNDRYTODAY01@gmail.com
+              </a>
               <br />
-              07702608040
+              <a href="tel:+917702608040" className="hover:text-primary transition-colors">
+                +91 7702608040
+              </a>
             </p>
           </div>
         </div>
