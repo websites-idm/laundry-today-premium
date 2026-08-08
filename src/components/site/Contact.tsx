@@ -122,9 +122,16 @@ export function Contact() {
                 <div className="mt-6 flex items-start gap-3 rounded-3xl border-2 border-primary/15 p-5">
                   <Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div className="text-sm">
-                    <div className="font-bold text-foreground">Business Hours</div>
-                    <p className="mt-1 text-muted-foreground font-semibold">Monday – Sunday</p>
-                    <p className="text-muted-foreground font-semibold">9:00 AM – 9:00 PM</p>
+                    <div className="font-bold text-foreground mb-2">Business Hours</div>
+                    <div className="space-y-1">
+                      <p className="text-muted-foreground font-semibold">Monday: 9:00 AM – 9:00 PM</p>
+                      <p className="text-muted-foreground font-semibold">Tuesday: 9:00 AM – 9:00 PM</p>
+                      <p className="text-muted-foreground font-semibold">Wednesday: 9:00 AM – 9:00 PM</p>
+                      <p className="text-muted-foreground font-semibold">Thursday: 9:00 AM – 9:00 PM</p>
+                      <p className="text-muted-foreground font-semibold">Friday: 9:00 AM – 9:00 PM</p>
+                      <p className="text-muted-foreground font-semibold">Saturday: 9:00 AM – 9:00 PM</p>
+                      <p className="text-muted-foreground font-semibold">Sunday: 9:00 AM – 9:00 PM</p>
+                    </div>
                   </div>
                 </div>
 

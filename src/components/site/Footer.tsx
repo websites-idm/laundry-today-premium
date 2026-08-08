@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Facebook, Instagram, MessageCircle, Phone } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const quickLinks = [
@@ -36,8 +36,24 @@ export function Footer() {
               Technology-enabled laundry and dry cleaning with free pickup and delivery, seven days a
               week.
             </p>
-            <div className="mt-5 flex gap-2">
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+            <div className="mt-5 flex flex-wrap gap-2">
+              <a
+                href="https://wa.me/917702608040"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-[#25D366] hover:text-white"
+              >
+                <MessageCircle className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="tel:+917702608040"
+                aria-label="Call Us"
+                className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-primary hover:text-white"
+              >
+                <Phone className="h-4.5 w-4.5" />
+              </a>
+              {[Facebook, Instagram].map((Icon, i) => (
                 <Link
                   key={i}
                   to="/contact"

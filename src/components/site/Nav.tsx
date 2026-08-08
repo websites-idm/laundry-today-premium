@@ -29,11 +29,17 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white/85 shadow-soft backdrop-blur-xl" : "bg-white/60 backdrop-blur-md"
+      className={`fixed inset-x-0 top-0 z-50 flex flex-col transition-all duration-500 ${
+        scrolled ? "bg-white/90 shadow-md backdrop-blur-xl" : "bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      {/* Premium Announcement Bar */}
+      <div className="bg-gradient-to-r from-primary-deep to-primary text-white text-xs sm:text-sm py-2.5 px-4 text-center shadow-sm">
+        <span className="font-medium">Looking for the best laundry in Navi Mumbai? </span>
+        <strong className="text-[#FFD700] sm:ml-1 font-black tracking-wide uppercase drop-shadow-sm">Welcome to Laundry Today</strong>
+      </div>
+      
+      <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2">
           <img src="/logo.png" alt="Laundry Today" className="h-9 w-auto sm:h-11" width={220} height={110} />
           <span className="text-lg sm:text-xl font-extrabold text-primary-deep tracking-tight whitespace-nowrap">

@@ -157,9 +157,16 @@ function ContactPage() {
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-primary-deep">Business Hours</h4>
-                      <p className="mt-1 text-xs sm:text-sm text-muted-foreground font-semibold">Monday – Sunday</p>
-                      <p className="text-xs sm:text-sm text-muted-foreground font-semibold">9:00 AM – 9:00 PM</p>
+                      <h4 className="text-sm font-bold text-primary-deep mb-2">Business Hours</h4>
+                      <div className="space-y-1">
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Monday: 9:00 AM – 9:00 PM</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Tuesday: 9:00 AM – 9:00 PM</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Wednesday: 9:00 AM – 9:00 PM</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Thursday: 9:00 AM – 9:00 PM</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Friday: 9:00 AM – 9:00 PM</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Saturday: 9:00 AM – 9:00 PM</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-semibold">Sunday: 9:00 AM – 9:00 PM</p>
+                      </div>
                     </div>
                   </div>
                 </Reveal>
