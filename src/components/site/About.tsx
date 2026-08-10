@@ -40,7 +40,7 @@ export function About() {
           <div className="mt-9 grid grid-cols-3 gap-2 sm:gap-4 rounded-3xl bg-secondary p-4 sm:p-6">
             <Counter to={12000} suffix="+" label="Orders" />
             <Counter to={24} suffix="h" label="Turnaround" />
-            <Counter to={98} suffix="%" label="On time" />
+            <Counter to={99} suffix="%" label="On time" />
           </div>
 
           <div className="mt-8">

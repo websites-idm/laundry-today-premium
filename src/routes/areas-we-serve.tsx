@@ -32,6 +32,128 @@ const activeAreas = [
   { name: "Seawoods", sectors: "Sectors 1 to 50", status: "Active - 24h Turnaround" },
 ];
 
+const seoLocations = [
+  "Laundry services in All Areas of Navi Mumbai",
+  "Laundry services in Mahape Navi Mumbai India",
+  "Laundry services in Rabale Navi Mumbai India",
+  "Laundry services in Seawoods Navi Mumbai India",
+  "Laundry services in Taloja Navi Mumbai India",
+  "Laundry services in Turbhe Navi Mumbai India",
+  "Laundry services in Ulwe Navi Mumbai India",
+  "Laundry services in Juinagar Navi Mumbai India",
+  "Laundry services in Navin Sheva Navi Mumbai India",
+  "Laundry services in Adaigaon Navi Mumbai India",
+  "Laundry services in Greater Khanda Navi Mumbai India",
+  "Laundry services in Sarsole Navi Mumbai India",
+  "Laundry services in Uran Navi Mumbai India",
+  "Laundry services in Panvel Navi Mumbai India",
+  "Laundry services in CBD Belapur Navi Mumbai India",
+  "Laundry services in Sanpada Navi Mumbai India",
+  "Laundry services in Ghansoli Navi Mumbai India",
+  "Laundry services in Airoli Navi Mumbai India",
+  "Laundry services in Nerul Navi Mumbai India",
+  "Laundry services in Kopar Khairane Navi Mumbai India",
+  "Laundry services in Vashi Navi Mumbai India",
+  "Laundry services in New Panvel Navi Mumbai India",
+  "Laundry services in Kharghar Navi Mumbai India",
+  "Laundry services in Sector 20 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 4 Airoli Navi Mumbai India",
+  "Laundry services in Sector 11 CBD Belapur Navi Mumbai India",
+  "Laundry services in Kalamboli New Panvel Navi Mumbai India",
+  "Laundry services in Sector 12 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 2 Kharghar Navi Mumbai India",
+  "Laundry services in Dombala New Panvel Navi Mumbai India",
+  "Laundry services in Sector 9 Vashi Navi Mumbai India",
+  "Laundry services in Sector 3 Airoli Navi Mumbai India",
+  "Laundry services in Nerul West Nerul Navi Mumbai India",
+  "Laundry services in Sector 6 Airoli Navi Mumbai India",
+  "Laundry services in Sector 8A CBD Belapur Navi Mumbai India",
+  "Laundry services in Sector 35I Kharghar Navi Mumbai India",
+  "Laundry services in Sector 26 Vashi Navi Mumbai India",
+  "Laundry services in Sector 35E Kharghar Navi Mumbai India",
+  "Laundry services in Sector 50 Seawoods Navi Mumbai India",
+  "Laundry services in Sector 15 CBD Belapur Navi Mumbai India",
+  "Laundry services in Sector 15 Ghansoli Navi Mumbai India",
+  "Laundry services in Sector 5 Nerul Navi Mumbai India",
+  "Laundry services in Sector 58 Seawoods Navi Mumbai India",
+  "Laundry services in Sector 10 Kharghar Navi Mumbai India",
+  "Laundry services in Palm Beach Sanpada Navi Mumbai India",
+  "Laundry services in Sector 9A Vashi Navi Mumbai India",
+  "Laundry services in Sector 20 Turbhe Navi Mumbai India",
+  "Laundry services in Sector-19 Airoli Navi Mumbai India",
+  "Laundry services in Sector 3 Kopar Khairane Navi Mumbai India",
+  "Laundry services in Sector 20 Airoli Navi Mumbai India",
+  "Laundry services in Sector 8 CBD Belapur Navi Mumbai India",
+  "Laundry services in Sector 11 Kopar Khairane Navi Mumbai India",
+  "Laundry services in Sector 21 Kharghar Navi Mumbai India",
+  "Laundry services in Owle Ulwe Navi Mumbai India",
+  "Laundry services in Sector 12 Vashi Navi Mumbai India",
+  "Laundry services in Sector 13 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 15 Airoli Navi Mumbai India",
+  "Laundry services in Sector 1 Sanpada Navi Mumbai India",
+  "Laundry services in Sector 12 CBD Belapur Navi Mumbai India",
+  "Laundry services in Sector 11 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 20 Kopar Khairane Navi Mumbai India",
+  "Laundry services in Sector 18 Sanpada Navi Mumbai India",
+  "Laundry services in Sector 6 Sanpada Navi Mumbai India",
+  "Laundry services in Sector 19 Kopar Khairane Navi Mumbai India",
+  "Laundry services in Sector 28 Vashi Navi Mumbai India",
+  "Laundry services in Sector 27 Nerul Navi Mumbai India",
+  "Laundry services in Sector 19A Nerul Navi Mumbai India",
+  "Laundry services in Sector 25 Nerul Navi Mumbai India",
+  "Laundry services in Sector 5 Vashi Navi Mumbai India",
+  "Laundry services in Sector 10A Airoli Navi Mumbai India",
+  "Laundry services in Sector 14 Vashi Navi Mumbai India",
+  "Laundry services in Guru Tegh Bahadur Nagar New Panvel Navi Mumbai India",
+  "Laundry services in Ghansoli Gaon Ghansoli Navi Mumbai India",
+  "Laundry services in Sector 32 Seawoods Navi Mumbai India",
+  "Laundry services in Sector 6 Nerul Navi Mumbai India",
+  "Laundry services in Sector-5 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 8 Airoli Navi Mumbai India",
+  "Laundry services in Khandeshhwar Greater Khanda Navi Mumbai India",
+  "Laundry services in Sector 44 Seawoods Navi Mumbai India",
+  "Laundry services in Sector 4 CBD Belapur Navi Mumbai India",
+  "Laundry services in Sector 26 Rabale Navi Mumbai India",
+  "Laundry services in Sector 19 Vashi Navi Mumbai India",
+  "Laundry services in Sector 21 Nerul Navi Mumbai India",
+  "Laundry services in Sector 11 Vashi Navi Mumbai India",
+  "Laundry services in Sector-19 Kharghar Navi Mumbai India",
+  "Laundry services in Kamothe New Panvel Navi Mumbai India",
+  "Laundry services in Sector 12 Kopar Khairane Navi Mumbai India",
+  "Laundry services in Sector 30 Vashi Navi Mumbai India",
+  "Laundry services in MIDC Industrial Area Ghansoli Navi Mumbai India",
+  "Laundry services in Sector 13 Sanpada Navi Mumbai India",
+  "Laundry services in Sector 36 Seawoods Navi Mumbai India",
+  "Laundry services in Khanda Colony New Panvel Navi Mumbai India",
+  "Laundry services in Forest Colony New Panvel Navi Mumbai India",
+  "Laundry services in Sector 17 Vashi Navi Mumbai India",
+  "Laundry services in Sector 40 Seawoods Navi Mumbai India",
+  "Laundry services in Sector 11 Sanpada Navi Mumbai India",
+  "Laundry services in Sector 15 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 17 Nerul Navi Mumbai India",
+  "Laundry services in Sector 34 Kharghar Navi Mumbai India",
+  "Laundry services in Sector 3 Vashi Navi Mumbai India",
+  "Laundry services in Sector 5 Sanpada Navi Mumbai India",
+  "Laundry services in Sector 50 Nerul Navi Mumbai India",
+  "Laundry services in Sector 9 CBD Belapur Navi Mumbai India",
+  "Laundry services in Karave Nagar Seawoods Navi Mumbai India",
+  "Laundry services in Sector 10 Vashi Navi Mumbai India",
+  "Laundry services in Sector 20 CBD Belapur Navi Mumbai India",
+  "Laundry services in Khandeshhwar Panvel Navi Mumbai India",
+  "Laundry services in Kalamboli Panvel Navi Mumbai India",
+  "Laundry services in APMC Market 1 Vashi Navi Mumbai India",
+  "Laundry services in Sector 7 Vashi Navi Mumbai India",
+  "Laundry services in Kamothe Panvel Navi Mumbai India",
+  "Laundry services in Sector 14 Kharghar Navi Mumbai India",
+  "Laundry services in Shiravane Nerul Navi Mumbai India",
+  "Laundry services in Phule Nagar Ghansoli Navi Mumbai India",
+  "Laundry services in Kharghar Golf Course Kharghar Navi Mumbai India",
+  "Laundry services in New Panvel East New Panvel Navi Mumbai India",
+  "Laundry services in MIDC Industrial Area Kopar Khairane Navi Mumbai India",
+  "Laundry services in Old Panvel New Panvel Navi Mumbai"
+];
+
+
 function AreasWeServePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [checkedStatus, setCheckedStatus] = useState<{ checked: boolean; available: boolean; matchName: string } | null>(null);
@@ -95,11 +217,13 @@ function AreasWeServePage() {
                       placeholder="e.g. Vashi, Kharghar, Nerul..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
+                      suppressHydrationWarning
                       className="w-full bg-transparent border-none outline-none text-sm font-semibold text-foreground placeholder:text-slate-400"
                     />
                   </div>
                   <button
                     type="submit"
+                    suppressHydrationWarning
                     className="accent-gradient rounded-2xl px-6 py-3.5 text-xs font-black uppercase tracking-wider text-accent-foreground shadow-soft border-none cursor-pointer"
                   >
                     Verify
@@ -215,6 +339,25 @@ function AreasWeServePage() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Comprehensive SEO Locations List */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionTitle
+            ribbon="Comprehensive Coverage"
+            title="All Areas We Serve"
+            subtitle="We provide premium door-to-door laundry pickup in the following Navi Mumbai neighborhoods and sectors."
+          />
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {seoLocations.map((location) => (
+              <div key={location} className="flex items-center gap-3 p-3 rounded-xl bg-secondary border border-primary/5 hover:border-primary/20 hover:shadow-soft transition-all duration-300">
+                <MapPin className="h-4 w-4 text-primary shrink-0" />
+                <span className="text-xs font-semibold text-primary-deep leading-tight truncate">{location}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

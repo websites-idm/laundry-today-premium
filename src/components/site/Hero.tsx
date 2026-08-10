@@ -122,9 +122,6 @@ export function Hero() {
                   <ButtonLink onClick={() => openBooking()} variant="accent" className="w-full sm:w-auto">
                     Book Pickup
                   </ButtonLink>
-                  <ButtonLink href="#pricing" variant="white" className="w-full sm:w-auto">
-                    Track Order
-                  </ButtonLink>
                 </div>
 
                 {/* Carousel Indicators (Dots) inside the left card bottom */}

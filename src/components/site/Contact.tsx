@@ -191,6 +191,7 @@ export function Contact() {
                       value={service}
                       onChange={(e) => setService(e.target.value)}
                       aria-label="Select a Service"
+                      suppressHydrationWarning
                     >
                       <option value="Select a Service">Select a Service</option>
                       {serviceOptions.map((opt) => (
@@ -227,6 +228,7 @@ export function Contact() {
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
                       aria-label="Select a Time Slot"
+                      suppressHydrationWarning
                     >
                       <option value="Select a Time Slot">Select a Time Slot</option>
                       {timeSlots.map((slot) => (

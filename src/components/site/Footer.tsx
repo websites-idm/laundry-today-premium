@@ -80,6 +80,14 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+
+            <h3 className="mt-8 text-sm font-extrabold tracking-[0.18em] uppercase">Service Areas</h3>
+            <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+              Serving Kharghar, Vashi, Nerul, Belapur, Seawoods, Airoli, and all major areas across Navi Mumbai.
+            </p>
+            <Link to="/areas-we-serve" className="mt-2 inline-block text-xs font-bold text-primary hover:text-accent transition-colors">
+              View Full Coverage List &rarr;
+            </Link>
           </div>
 
           <div>

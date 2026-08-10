@@ -104,73 +104,7 @@ function PricingPage() {
       {/* 2. Interactive Pricing Calculator Section */}
       <Pricing hideTitle={false} />
 
-      {/* 3. Membership plans section */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            ribbon="Save More"
-            title="Premium Monthly Membership Tiers"
-            subtitle="Subscribe to unlock flat category discounts, complimentary express turnarounds, and zero delivery minimums."
-          />
-          
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {memberships.map((plan, idx) => (
-              <Reveal key={plan.name} delay={idx * 0.1} y={30}>
-                <div
-                  className={`h-full rounded-[32px] p-8 border transition-all duration-300 flex flex-col justify-between relative ${
-                    plan.popular
-                      ? "border-accent bg-secondary/50 shadow-lift"
-                      : "border-primary/5 bg-white shadow-soft hover:shadow-lift"
-                  }`}
-                >
-                  {plan.popular && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1 text-[10px] font-black uppercase tracking-widest text-accent-foreground shadow-soft">
-                      Best Value
-                    </span>
-                  )}
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-lg font-black text-primary-deep">{plan.name}</div>
-                      <plan.icon className={`h-6 w-6 ${plan.popular ? "text-accent" : "text-primary"}`} />
-                    </div>
-                    
-                    <div className="mt-6 flex items-baseline gap-1">
-                      <span className="text-4xl font-black tracking-tight text-primary-deep">{plan.price}</span>
-                      <span className="text-sm text-muted-foreground font-semibold">/{plan.period}</span>
-                    </div>
-                    
-                    <p className="mt-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      {plan.desc}
-                    </p>
-                    
-                    <ul className="mt-8 space-y-3.5">
-                      {plan.features.map((f) => (
-                        <li key={f} className="flex items-start gap-3">
-                          <Check className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
-                          <span className="text-xs sm:text-sm font-semibold text-foreground/80 leading-snug">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="mt-8 pt-6 border-t border-slate-100">
-                    <button
-                      onClick={() => openBooking()}
-                      className={`w-full rounded-2xl py-3.5 text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer border-none ${
-                        plan.popular
-                          ? "accent-gradient text-accent-foreground shadow-soft"
-                          : "bg-secondary text-primary hover:bg-primary hover:text-white"
-                      }`}
-                    >
-                      Choose Plan
-                    </button>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* 4. Pricing FAQs */}
       <section className="py-20 bg-secondary rounded-[40px]">
@@ -189,23 +123,7 @@ function PricingPage() {
         </div>
       </section>
 
-      {/* 5. CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary-deep to-primary-light text-white text-center">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <h2 className="text-3xl font-black tracking-tight">Claim Your First Order Discount</h2>
-          <p className="mt-4 text-white/80 text-sm sm:text-base leading-relaxed">
-            Get flat ₹100 off on your first order. Book online and let our experts handle the rest.
-          </p>
-          <div className="mt-8">
-            <button
-              onClick={() => openBooking()}
-              className="accent-gradient inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold text-accent-foreground shadow-lift hover:-translate-y-0.5 transition-transform cursor-pointer border-0"
-            >
-              Claim Offer Now
-            </button>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }
