@@ -38,7 +38,6 @@ function CommercialPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [industry, setIndustry] = useState("Hotels");
-  const [type, setType] = useState("Bedding & Linens");
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,7 +50,6 @@ function CommercialPage() {
 - *Contact Person*: ${name}
 - *Phone*: ${phone}
 - *Industry*: ${industry}
-- *Linen Category*: ${type}
 - *Special Instructions*: ${message || "None"}`;
 
     const encodedText = encodeURIComponent(text);
@@ -135,7 +133,7 @@ function CommercialPage() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-12 space-y-6">
+            <form onSubmit={handleSubmit} suppressHydrationWarning className="mt-12 space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="company" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Company / Business Name *</label>
@@ -194,23 +192,7 @@ function CommercialPage() {
                   </select>
                 </div>
                 
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="type" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Laundry Category</label>
-                  <select
-                    id="type"
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
-                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
-                  >
-                    <option>Bedding & Linens</option>
-                    <option>Towels & Robes</option>
-                    <option>Staff / Office Uniforms</option>
-                    <option>Kitchen / Restaurant Linens</option>
-                    <option>Dry Cleaning (Spa Gowns, etc.)</option>
-                    <option>Schools & Hostels</option>
-                    <option>Gyms & Spas</option>
-                  </select>
-                </div>
+            
               </div>
 
               <div className="flex flex-col gap-1.5">

@@ -35,7 +35,7 @@ export function Nav() {
     >
       {/* Premium Announcement Bar */}
       <div className="bg-gradient-to-r from-[#FF9933] to-[#FFD700] text-black py-2.5 sm:py-3.5 px-2 sm:px-4 text-center shadow-md flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 overflow-hidden">
-        <span className="text-[10px] min-[375px]:text-[11px] sm:text-lg font-extrabold tracking-tight drop-shadow-sm whitespace-nowrap truncate w-full sm:w-auto">Looking for the best laundry in Navi Mumbai?</span>
+        <span className="text-[14px] min-[375px]:text-[15px] min-[400px]:text-[16px] sm:text-lg font-extrabold tracking-tight drop-shadow-sm whitespace-nowrap truncate w-full sm:w-auto">Looking for the best laundry in Navi Mumbai?</span>
         <strong className="text-white font-black tracking-widest uppercase drop-shadow-md text-[11px] min-[375px]:text-[12px] sm:text-[17px] whitespace-nowrap truncate w-full sm:w-auto">WELCOME TO LAUNDRY TODAY</strong>
       </div>
       
@@ -65,7 +65,7 @@ export function Nav() {
                     {servicesData.map((opt) => (
                       <Link
                         key={opt.id}
-                        to={`/services/${opt.id}`}
+                        to={`/services/${opt.id}` as any}
                         className="block px-5 py-2.5 text-[11px] font-bold text-foreground/80 hover:bg-secondary hover:text-primary-deep decoration-none transition-colors"
                       >
                         {opt.title}
