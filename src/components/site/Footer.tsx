@@ -53,16 +53,24 @@ export function Footer() {
               >
                 <Phone className="h-4.5 w-4.5" />
               </a>
-              {[Facebook, Instagram].map((Icon, i) => (
-                <Link
-                  key={i}
-                  to="/contact"
-                  aria-label="Social link"
-                  className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <Icon className="h-4.5 w-4.5" />
-                </Link>
-              ))}
+              <a
+                href="https://www.facebook.com/share/1HuCdWeTwt/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-[#1877F2] hover:text-white"
+              >
+                <Facebook className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="https://www.instagram.com/laundrytoday01?igsh=aWtlN3R2YjZxbDh1"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary-deep transition-colors hover:bg-[#E1306C] hover:text-white"
+              >
+                <Instagram className="h-4.5 w-4.5" />
+              </a>
             </div>
           </div>
 

@@ -43,17 +43,17 @@ const values = [
 
 const team = [
   {
-    name: "Vikram Mehta",
-    role: "Co-Founder & CEO",
+    name: "Vivek Chaurasiya & Mohammed Abdullah",
+    role: "Founder & CEO",
     bio: "Over 10 years of operations management experience. Committed to standardizing premium dry cleaning.",
   },
   {
-    name: "Anjali Rao",
+    name: "Mahesh Kumar Nirmal",
     role: "Head of Fabric Care",
     bio: "Certified garments washing specialist. Expert in stain pre-spotting and delicate silk restoration.",
   },
   {
-    name: "Sanjay Joshi",
+    name: "Laundry Today Team",
     role: "Logistics Coordinator",
     bio: "Manages our delivery riders and route schedules to ensure next-day home delivery guarantees.",
   },
@@ -161,7 +161,7 @@ function AboutPage() {
           <div className="grid grid-cols-3 gap-4 rounded-3xl bg-secondary p-8 shadow-soft">
             <Counter to={12000} suffix="+" label="Orders" />
             <Counter to={24} suffix="h" label="Turnaround" />
-            <Counter to={98} suffix="%" label="On time" />
+            <Counter to={99} suffix="%" label="On time" />
           </div>
         </div>
       </section>

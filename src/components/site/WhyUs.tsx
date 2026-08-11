@@ -6,7 +6,7 @@ const items = [
   { icon: Leaf, title: "Eco-Friendly Detergents", copy: "Biodegradable, dermatologist-safe products for sensitive skin." },
   { icon: Wallet, title: "Affordable Pricing", copy: "Clear per-kilo and per-item rates. No surprises at checkout." },
   { icon: Truck, title: "Pickup & Delivery", copy: "Free two-way collection in a time slot that suits you." },
-  { icon: Zap, title: "Express Cleaning", copy: "Same-day service available for urgent orders before 10am." },
+  { icon: Zap, title: "Express Cleaning", copy: "Delivery in 24hrs" },
   { icon: Shirt, title: "Fabric Safe", copy: "Silk, wool and delicates handled by trained specialists." },
 ];
 

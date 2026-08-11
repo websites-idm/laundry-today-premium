@@ -68,16 +68,13 @@ const memberships = [
 const faqs = [
   {
     q: "Is there a minimum order value for free delivery?",
-    a: "Yes, standard pay-as-you-go pickups have a free delivery threshold of ₹399. For orders below this amount, a nominal service fee of ₹50 is applied.",
+    a: "Minimum order value is ₹399. Choose your preferred pickup time slot while booking. Our rider will arrive at your selected time to collect your laundry and deliver it back once professionally cleaned.",
   },
   {
     q: "How does the pricing-by-weight calculation work?",
     a: "Laundry by weight (Wash & Fold or Wash & Iron) is weighed at our facility. Damp items are weighed after drying to ensure you only pay for clean, dry fabric weight.",
   },
-  {
-    q: "How do I claim membership discounts?",
-    a: "Once you subscribe, your discounts are automatically linked to your registered phone number and applied to your invoice at checkout.",
-  },
+ 
 ];
 
 function PricingPage() {

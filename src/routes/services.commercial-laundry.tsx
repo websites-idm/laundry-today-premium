@@ -25,8 +25,7 @@ const commercialCategories = [
 
 function CommercialLaundryPage() {
   return (
-    <>
-      <ServicePageTemplate serviceId="commercial-laundry" />
+    <ServicePageTemplate serviceId="commercial-laundry">
       {/* Custom Commercial Categories Section */}
       <section className="py-20 bg-secondary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -49,6 +48,6 @@ function CommercialLaundryPage() {
           </div>
         </div>
       </section>
-    </>
+    </ServicePageTemplate>
   );
 }

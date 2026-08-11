@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: "How fast is the turnaround?",
-    a: "Standard orders are back within 24 hours. Express same-day service is available for orders collected before 10am, and bulky items such as duvets take 48 hours.",
+    a: "Standard orders are back within 24 hours. Express same-day service is available, and bulky items such as duvets take 48 hours.",
   },
   {
     q: "What if an item is damaged or lost?",

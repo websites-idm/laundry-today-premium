@@ -7,7 +7,13 @@ import { servicesData } from "./servicesData";
 import { Pricing } from "./Pricing";
 import { Reviews } from "./Reviews";
 
-export function ServicePageTemplate({ serviceId }: { serviceId: string }) {
+export function ServicePageTemplate({ 
+  serviceId, 
+  children 
+}: { 
+  serviceId: string;
+  children?: React.ReactNode;
+}) {
   const service = servicesData.find((s) => s.id === serviceId);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
@@ -78,6 +84,9 @@ export function ServicePageTemplate({ serviceId }: { serviceId: string }) {
           </div>
         </div>
       </section>
+
+      {/* Optional injected content immediately after the hero */}
+      {children}
 
       {/* 2. About Service */}
       <section className="py-20 sm:py-28 bg-white">

@@ -40,48 +40,40 @@ export function FloatingBar() {
             openBooking();
           }}
           suppressHydrationWarning
-          className="pointer-events-auto bg-[#3b2c85] rounded-full p-2 shadow-lg border-0 cursor-pointer transition-transform active:scale-95 animate-bounce shadow-primary/40"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-6 py-3 shadow-lg border-0 cursor-pointer transition-transform active:scale-95 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s' }}
         >
-          <div className="bg-white rounded-full px-6 py-2 flex items-center justify-center">
-            <span className="font-black text-black text-[22px] tracking-tight">Book now</span>
-          </div>
+          <span className="font-black text-white text-[20px] tracking-tight">Book now</span>
         </button>
       </div>
 
       {/* Bottom row: Call, WhatsApp, Price list */}
-      <div className="flex justify-start items-center gap-1.5">
+      <div className="flex justify-start items-center gap-2 pl-1">
         <a
           href="tel:+917702608040"
           onClick={() => handleTabClick("call")}
-          className="pointer-events-auto bg-[#3b2c85] rounded-full p-[7px] shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s', animationDelay: '0.2s' }}
         >
-          <div className="bg-white rounded-full px-4 py-1.5 flex items-center justify-center">
-            <span className="font-black text-black text-[19px] tracking-tight">Call</span>
-          </div>
+          <span className="font-black text-white text-[16px] tracking-tight">Call</span>
         </a>
 
         <a
           href="https://wa.me/917702608040"
           onClick={() => handleTabClick("whatsapp")}
-          className="pointer-events-auto bg-[#25D366] rounded-full p-[7px] shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s', animationDelay: '0.4s' }}
         >
-          <div className="bg-white rounded-full px-3 py-1.5 flex items-center justify-center">
-            <span className="font-black text-black text-[17px] tracking-tight">WhatsApp</span>
-          </div>
+          <span className="font-black text-white text-[16px] tracking-tight">WhatsApp</span>
         </a>
 
         <Link
           to="/pricing"
           onClick={() => handleTabClick("prices")}
-          className="pointer-events-auto bg-[#3b2c85] rounded-full p-[7px] shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s', animationDelay: '0.6s' }}
         >
-          <div className="bg-white rounded-full px-3 py-1.5 flex items-center justify-center">
-            <span className="font-black text-black text-[17px] tracking-tight whitespace-nowrap">Price list</span>
-          </div>
+          <span className="font-black text-white text-[16px] tracking-tight whitespace-nowrap">Price list</span>
         </Link>
       </div>
     </motion.div>

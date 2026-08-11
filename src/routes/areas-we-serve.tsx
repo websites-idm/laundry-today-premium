@@ -20,16 +20,13 @@ export const Route = createFileRoute("/areas-we-serve")({
   component: AreasWeServePage,
 });
 
-const activeAreas = [
-  { name: "Kopar Khairane", sectors: "Sectors 1 to 20 (including Bonkode & Ghansoli border)", status: "Active - 24h Turnaround" },
-  { name: "Ghansoli", sectors: "Sectors 1 to 30", status: "Active - 24h Turnaround" },
-  { name: "Vashi", sectors: "Sectors 1 to 30", status: "Active - 24h Turnaround" },
-  { name: "Sanpada", sectors: "Sectors 1 to 20", status: "Active - 24h Turnaround" },
-  { name: "Airoli", sectors: "Sectors 1 to 28", status: "Active - 24h Turnaround" },
-  { name: "Nerul", sectors: "Sectors 1 to 50", status: "Active - 24h Turnaround" },
-  { name: "Belapur", sectors: "Sectors 1 to 30", status: "Active - 24h Turnaround" },
-  { name: "Kharghar", sectors: "Sectors 1 to 45", status: "Active - 24h Turnaround" },
-  { name: "Seawoods", sectors: "Sectors 1 to 50", status: "Active - 24h Turnaround" },
+const mainAreas = [
+  "Airoli", "Vitawa", "Dighe", "Rabale", "Ghansoli", "Mahape", 
+  "Kopar Khairane", "Pawne", "Vashi", "Turbhe", "Sanpada", "Juinagar", 
+  "Palm Beach", "Nerul", "Seawoods", "CBD Belapur", "Wahal", "Ulwe", 
+  "Bamandongari", "Pushpak Nagar", "Karanjade", "Palaspa Phata", 
+  "Panvel", "Khanda Colony", "Khandeshwar", "Kamothe", "Kalamboli", 
+  "Roadpali", "Taloja Panchanand", "Kharghar"
 ];
 
 const seoLocations = [
@@ -155,26 +152,11 @@ const seoLocations = [
 
 
 function AreasWeServePage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [checkedStatus, setCheckedStatus] = useState<{ checked: boolean; available: boolean; matchName: string } | null>(null);
+  const [mainAreaQuery, setMainAreaQuery] = useState("");
+  const [subAreaQuery, setSubAreaQuery] = useState("");
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
-
-    const normalizedQuery = searchQuery.toLowerCase().trim();
-    const matched = activeAreas.find(
-      (area) =>
-        area.name.toLowerCase().includes(normalizedQuery) ||
-        normalizedQuery.includes(area.name.toLowerCase())
-    );
-
-    if (matched) {
-      setCheckedStatus({ checked: true, available: true, matchName: matched.name });
-    } else {
-      setCheckedStatus({ checked: true, available: false, matchName: searchQuery });
-    }
-  };
+  const filteredMainAreas = mainAreas.filter(area => area.toLowerCase().includes(mainAreaQuery.toLowerCase()));
+  const filteredSubAreas = seoLocations.filter(area => area.toLowerCase().includes(subAreaQuery.toLowerCase()));
 
   return (
     <div className="pt-24 sm:pt-28 text-foreground/80 overflow-hidden">
@@ -196,111 +178,38 @@ function AreasWeServePage() {
         </div>
       </section>
 
-      {/* 2. Interactive Search Tool & Coverage List */}
-      <section className="py-20 sm:py-28 bg-white">
+      {/* 2. Main Areas We Serve */}
+      <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
-            
-            {/* Search Availability Card */}
-            <Reveal x={-40}>
-              <div className="glass-card rounded-[32px] bg-secondary p-8 border border-primary/5 shadow-soft">
-                <h3 className="text-2xl font-black text-primary-deep leading-tight">Check Availability</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  Enter your neighborhood or sector name to check if our delivery agents can collect from your doorstep today.
-                </p>
-
-                <form onSubmit={handleSearch} className="mt-8 flex gap-2">
-                  <div className="flex-grow glass-card flex items-center rounded-2xl border-2 border-primary/10 bg-white px-4 py-3 shadow-soft focus-within:border-accent">
-                    <Search className="h-5 w-5 text-slate-400 mr-2 shrink-0" />
-                    <input
-                      type="text"
-                      placeholder="e.g. Vashi, Kharghar, Nerul..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      suppressHydrationWarning
-                      className="w-full bg-transparent border-none outline-none text-sm font-semibold text-foreground placeholder:text-slate-400"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    suppressHydrationWarning
-                    className="accent-gradient rounded-2xl px-6 py-3.5 text-xs font-black uppercase tracking-wider text-accent-foreground shadow-soft border-none cursor-pointer"
-                  >
-                    Verify
-                  </button>
-                </form>
-
-                {/* Availability Status Display */}
-                {checkedStatus && (
-                  <div className="mt-6">
-                    {checkedStatus.available ? (
-                      <div className="flex gap-3 rounded-2xl bg-emerald-50 border border-emerald-100 p-5 text-emerald-900">
-                        <CheckCircle2 className="h-6 w-6 text-emerald-500 shrink-0" />
-                        <div>
-                          <h4 className="text-sm font-extrabold">Service Available!</h4>
-                          <p className="mt-1 text-xs leading-relaxed text-emerald-800">
-                            Great news! We have active pickup slots in <strong>{checkedStatus.matchName}</strong> today.
-                          </p>
-                          <button
-                            onClick={() => openBooking()}
-                            className="mt-3 text-xs font-extrabold underline text-emerald-950 uppercase tracking-widest cursor-pointer bg-transparent border-none"
-                          >
-                            Book Pickup Now
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex gap-3 rounded-2xl bg-red-50 border border-red-100 p-5 text-red-900">
-                        <AlertCircle className="h-6 w-6 text-red-500 shrink-0" />
-                        <div>
-                          <h4 className="text-sm font-extrabold">Service Not Available Yet</h4>
-                          <p className="mt-1 text-xs leading-relaxed text-red-800">
-                            We are currently expanding. Although we don't serve <strong>{checkedStatus.matchName}</strong>, contact us on WhatsApp to see if we can make a special delivery arrangement.
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-                
-                {/* Details card */}
-                <div className="mt-8 flex gap-4 p-5 rounded-2xl bg-white border border-primary/5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-primary shrink-0">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-primary-deep">Main Office & Operations Hub</h4>
-                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
-                      Shop no 7, Shiv parwati apartment, Bonkode, Sector 12, Kopar Khairane, Navi Mumbai, Maharashtra 400709
-                    </p>
-                  </div>
-                </div>
+          <SectionTitle
+            ribbon="Primary Coverage"
+            title="Main Areas We Serve"
+            subtitle="We provide premium door-to-door laundry pickup in these key Navi Mumbai locations."
+          />
+          <div className="mt-8 max-w-md mx-auto">
+            <div className="flex items-center rounded-2xl border-2 border-primary/10 bg-secondary px-4 py-3 shadow-soft focus-within:border-accent transition-colors">
+              <Search className="h-5 w-5 text-slate-400 mr-2 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search main areas..."
+                value={mainAreaQuery}
+                onChange={(e) => setMainAreaQuery(e.target.value)}
+                className="w-full bg-transparent border-none outline-none text-sm font-semibold text-primary-deep placeholder:text-slate-400"
+              />
+            </div>
+          </div>
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {filteredMainAreas.map((location) => (
+              <div key={location} className="flex items-center gap-2 p-3 rounded-xl bg-secondary border border-primary/5 hover:border-primary/20 hover:shadow-soft transition-all duration-300">
+                <MapPin className="h-4 w-4 text-primary shrink-0" />
+                <span className="text-xs font-bold text-primary-deep leading-tight truncate">{location}</span>
               </div>
-            </Reveal>
-
-            {/* Served Neighborhoods Grid */}
-            <Reveal x={40} delay={0.15}>
-              <div className="space-y-6">
-                <h3 className="text-2xl font-black text-primary-deep">Serving Sectors in Navi Mumbai</h3>
-                <div className="grid gap-4 max-h-[420px] overflow-y-auto pr-2 custom-scrollbar">
-                  {activeAreas.map((area) => (
-                    <div
-                      key={area.name}
-                      className="flex items-center justify-between p-5 rounded-2xl bg-secondary border border-primary/5 hover:bg-white hover:shadow-soft transition-all duration-300"
-                    >
-                      <div>
-                        <h4 className="text-sm font-bold text-primary-deep">{area.name}</h4>
-                        <p className="mt-1 text-xs text-muted-foreground leading-normal">{area.sectors}</p>
-                      </div>
-                      <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 uppercase tracking-wider shrink-0">
-                        {area.status}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+            ))}
+            {filteredMainAreas.length === 0 && (
+              <div className="col-span-full py-8 text-center text-muted-foreground text-sm font-semibold">
+                No main areas found matching "{mainAreaQuery}"
               </div>
-            </Reveal>
-
+            )}
           </div>
         </div>
       </section>
@@ -342,21 +251,38 @@ function AreasWeServePage() {
         </div>
       </section>
 
-      {/* Comprehensive SEO Locations List */}
+      {/* 4. Comprehensive SEO Locations List (Sub Areas) */}
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            ribbon="Comprehensive Coverage"
-            title="All Areas We Serve"
-            subtitle="We provide premium door-to-door laundry pickup in the following Navi Mumbai neighborhoods and sectors."
+            ribbon="Extended Coverage"
+            title="Detailed Sub Areas & Sectors"
+            subtitle="Our service network extends across all sectors within our main coverage zones."
           />
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {seoLocations.map((location) => (
+          <div className="mt-8 max-w-md mx-auto">
+            <div className="flex items-center rounded-2xl border-2 border-primary/10 bg-secondary px-4 py-3 shadow-soft focus-within:border-accent transition-colors">
+              <Search className="h-5 w-5 text-slate-400 mr-2 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search sub areas..."
+                value={subAreaQuery}
+                onChange={(e) => setSubAreaQuery(e.target.value)}
+                className="w-full bg-transparent border-none outline-none text-sm font-semibold text-primary-deep placeholder:text-slate-400"
+              />
+            </div>
+          </div>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {filteredSubAreas.map((location) => (
               <div key={location} className="flex items-center gap-3 p-3 rounded-xl bg-secondary border border-primary/5 hover:border-primary/20 hover:shadow-soft transition-all duration-300">
-                <MapPin className="h-4 w-4 text-primary shrink-0" />
-                <span className="text-xs font-semibold text-primary-deep leading-tight truncate">{location}</span>
+                <MapPin className="h-4 w-4 text-primary/40 shrink-0" />
+                <span className="text-[11px] font-semibold text-muted-foreground leading-tight truncate">{location}</span>
               </div>
             ))}
+            {filteredSubAreas.length === 0 && (
+              <div className="col-span-full py-8 text-center text-muted-foreground text-sm font-semibold">
+                No sub areas found matching "{subAreaQuery}"
+              </div>
+            )}
           </div>
         </div>
       </section>
