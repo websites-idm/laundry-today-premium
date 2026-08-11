@@ -29,7 +29,6 @@ const industries = [
 ];
 
 const pillars = [
-  { icon: Scale, title: "Bulk Volume Discounts", desc: "Scale your savings. Custom weight-based tier rates for regular volume contracts." },
   { icon: Clock, title: "Next-Day Turnaround", desc: "Never run out of linen. Reliable 24-hour collection-to-return schedules." },
   { icon: ShieldCheck, title: "Sanitized Care", desc: "Thermo-chemical sanitization cycles kill 99.9% of bacteria and viruses." },
 ];
@@ -37,10 +36,8 @@ const pillars = [
 function CommercialPage() {
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [type, setType] = useState("Bedding & Linens");
-  const [weight, setWeight] = useState("Under 100 kg / week");
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,10 +48,8 @@ function CommercialPage() {
     const text = `Hello Laundry Today! I would like to request a commercial laundry quote:
 - *Company*: ${company}
 - *Contact Person*: ${name}
-- *Email*: ${email || "N/A"}
 - *Phone*: ${phone}
 - *Linen Category*: ${type}
-- *Weekly Volume*: ${weight}
 - *Special Instructions*: ${message || "None"}`;
 
     const encodedText = encodeURIComponent(text);
@@ -166,62 +161,35 @@ function CommercialPage() {
                 </div>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="email" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Email Address</label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent"
-                    placeholder="e.g. sunil@grandvista.com"
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="phone" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Phone / WhatsApp Number *</label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent"
-                    placeholder="e.g. 9876543210"
-                  />
-                </div>
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="phone" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Phone / WhatsApp Number *</label>
+                <input
+                  id="phone"
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent"
+                  placeholder="e.g. 9876543210"
+                />
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="type" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Primary Laundry Category</label>
-                  <select
-                    id="type"
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
-                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
-                  >
-                    <option>Bedding & Linens</option>
-                    <option>Towels & Robes</option>
-                    <option>Staff / Office Uniforms</option>
-                    <option>Kitchen / Restaurant Linens</option>
-                    <option>Dry Cleaning (Spa Gowns, etc.)</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="weight" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Estimated Volume / Week</label>
-                  <select
-                    id="weight"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
-                  >
-                    <option>Under 100 kg / week</option>
-                    <option>100 kg to 500 kg / week</option>
-                    <option>500 kg to 1000 kg / week</option>
-                    <option>Above 1000 kg / week</option>
-                  </select>
-                </div>
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="type" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Primary Laundry Category</label>
+                <select
+                  id="type"
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
+                >
+                  <option>Bedding & Linens</option>
+                  <option>Towels & Robes</option>
+                  <option>Staff / Office Uniforms</option>
+                  <option>Kitchen / Restaurant Linens</option>
+                  <option>Dry Cleaning (Spa Gowns, etc.)</option>
+                  <option>Schools & Hostels</option>
+                  <option>Gyms & Spas</option>
+                </select>
               </div>
 
               <div className="flex flex-col gap-1.5">
