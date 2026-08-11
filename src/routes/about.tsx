@@ -189,7 +189,7 @@ function AboutPage() {
               src={teamImg}
               alt="Laundry Today team in facility"
               loading="lazy"
-              className="rounded-[32px] w-full h-[350px] object-cover shadow-soft"
+              className="rounded-[32px] w-full h-[350px] md:h-[450px] lg:h-[550px] object-cover object-center shadow-soft"
             />
           </div>
         </div>

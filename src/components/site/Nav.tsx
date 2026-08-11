@@ -34,9 +34,9 @@ export function Nav() {
       }`}
     >
       {/* Premium Announcement Bar */}
-      <div className="bg-gradient-to-r from-[#FF9933] to-[#FFD700] text-black py-3 sm:py-3.5 px-4 text-center shadow-md flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-4">
-        <span className="text-lg sm:text-xl font-extrabold tracking-tight drop-shadow-sm">Looking for the best laundry in Navi Mumbai?</span>
-        <strong className="text-white font-black tracking-widest uppercase drop-shadow-md text-[17px] sm:text-[19px]">WELCOME TO LAUNDRY TODAY</strong>
+      <div className="bg-gradient-to-r from-[#FF9933] to-[#FFD700] text-black py-2.5 sm:py-3.5 px-2 sm:px-4 text-center shadow-md flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 overflow-hidden">
+        <span className="text-[10px] min-[375px]:text-[11px] sm:text-lg font-extrabold tracking-tight drop-shadow-sm whitespace-nowrap truncate w-full sm:w-auto">Looking for the best laundry in Navi Mumbai?</span>
+        <strong className="text-white font-black tracking-widest uppercase drop-shadow-md text-[11px] min-[375px]:text-[12px] sm:text-[17px] whitespace-nowrap truncate w-full sm:w-auto">WELCOME TO LAUNDRY TODAY</strong>
       </div>
       
       <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">

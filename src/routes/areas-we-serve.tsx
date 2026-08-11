@@ -152,11 +152,6 @@ const seoLocations = [
 
 
 function AreasWeServePage() {
-  const [mainAreaQuery, setMainAreaQuery] = useState("");
-  const [subAreaQuery, setSubAreaQuery] = useState("");
-
-  const filteredMainAreas = mainAreas.filter(area => area.toLowerCase().includes(mainAreaQuery.toLowerCase()));
-  const filteredSubAreas = seoLocations.filter(area => area.toLowerCase().includes(subAreaQuery.toLowerCase()));
 
   return (
     <div className="pt-24 sm:pt-28 text-foreground/80 overflow-hidden">
@@ -186,30 +181,13 @@ function AreasWeServePage() {
             title="Main Areas We Serve"
             subtitle="We provide premium door-to-door laundry pickup in these key Navi Mumbai locations."
           />
-          <div className="mt-8 max-w-md mx-auto">
-            <div className="flex items-center rounded-2xl border-2 border-primary/10 bg-secondary px-4 py-3 shadow-soft focus-within:border-accent transition-colors">
-              <Search className="h-5 w-5 text-slate-400 mr-2 shrink-0" />
-              <input
-                type="text"
-                placeholder="Search main areas..."
-                value={mainAreaQuery}
-                onChange={(e) => setMainAreaQuery(e.target.value)}
-                className="w-full bg-transparent border-none outline-none text-sm font-semibold text-primary-deep placeholder:text-slate-400"
-              />
-            </div>
-          </div>
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {filteredMainAreas.map((location) => (
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {mainAreas.map((location) => (
               <div key={location} className="flex items-center gap-2 p-3 rounded-xl bg-secondary border border-primary/5 hover:border-primary/20 hover:shadow-soft transition-all duration-300">
                 <MapPin className="h-4 w-4 text-primary shrink-0" />
                 <span className="text-xs font-bold text-primary-deep leading-tight truncate">{location}</span>
               </div>
             ))}
-            {filteredMainAreas.length === 0 && (
-              <div className="col-span-full py-8 text-center text-muted-foreground text-sm font-semibold">
-                No main areas found matching "{mainAreaQuery}"
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -259,30 +237,13 @@ function AreasWeServePage() {
             title="Detailed Sub Areas & Sectors"
             subtitle="Our service network extends across all sectors within our main coverage zones."
           />
-          <div className="mt-8 max-w-md mx-auto">
-            <div className="flex items-center rounded-2xl border-2 border-primary/10 bg-secondary px-4 py-3 shadow-soft focus-within:border-accent transition-colors">
-              <Search className="h-5 w-5 text-slate-400 mr-2 shrink-0" />
-              <input
-                type="text"
-                placeholder="Search sub areas..."
-                value={subAreaQuery}
-                onChange={(e) => setSubAreaQuery(e.target.value)}
-                className="w-full bg-transparent border-none outline-none text-sm font-semibold text-primary-deep placeholder:text-slate-400"
-              />
-            </div>
-          </div>
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {filteredSubAreas.map((location) => (
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {seoLocations.map((location) => (
               <div key={location} className="flex items-center gap-3 p-3 rounded-xl bg-secondary border border-primary/5 hover:border-primary/20 hover:shadow-soft transition-all duration-300">
                 <MapPin className="h-4 w-4 text-primary/40 shrink-0" />
                 <span className="text-[11px] font-semibold text-muted-foreground leading-tight truncate">{location}</span>
               </div>
             ))}
-            {filteredSubAreas.length === 0 && (
-              <div className="col-span-full py-8 text-center text-muted-foreground text-sm font-semibold">
-                No sub areas found matching "{subAreaQuery}"
-              </div>
-            )}
           </div>
         </div>
       </section>

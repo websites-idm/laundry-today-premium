@@ -20,7 +20,7 @@ export const Route = createFileRoute("/commercial")({
 });
 
 const industries = [
-  { icon: Hotel, name: "Hotels & Spas", desc: "Pristine sheets, duvet covers, pillowcases, bathrobes, and towels cleaned and flatwork ironed." },
+  { icon: Hotel, name: "Hotels", desc: "Pristine sheets, duvet covers, pillowcases, bathrobes, and towels cleaned and flatwork ironed." },
   { icon: Utensils, name: "Restaurants", desc: "Stain extraction from tablecloths, napkins, aprons, chef uniforms, and kitchen towels." },
   { icon: HeartPulse, name: "Hospitals & Clinics", desc: "Hospital-grade sanitization for medical scrubs, patient gowns, bed linens, and curtains." },
   { icon: Building2, name: "Corporate Offices", desc: "Standard uniform cleaning programs for front-office receptionists, security, and staff members." },
@@ -37,6 +37,7 @@ function CommercialPage() {
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [industry, setIndustry] = useState("Hotels");
   const [type, setType] = useState("Bedding & Linens");
   const [message, setMessage] = useState("");
 
@@ -49,6 +50,7 @@ function CommercialPage() {
 - *Company*: ${company}
 - *Contact Person*: ${name}
 - *Phone*: ${phone}
+- *Industry*: ${industry}
 - *Linen Category*: ${type}
 - *Special Instructions*: ${message || "None"}`;
 
@@ -148,7 +150,7 @@ function CommercialPage() {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="name" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Contact Person *</label>
+                  <label htmlFor="name" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Contact Person Name *</label>
                   <input
                     id="name"
                     type="text"
@@ -174,22 +176,41 @@ function CommercialPage() {
                 />
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="type" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Primary Laundry Category</label>
-                <select
-                  id="type"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                  className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
-                >
-                  <option>Bedding & Linens</option>
-                  <option>Towels & Robes</option>
-                  <option>Staff / Office Uniforms</option>
-                  <option>Kitchen / Restaurant Linens</option>
-                  <option>Dry Cleaning (Spa Gowns, etc.)</option>
-                  <option>Schools & Hostels</option>
-                  <option>Gyms & Spas</option>
-                </select>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="industry" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Industry Type</label>
+                  <select
+                    id="industry"
+                    value={industry}
+                    onChange={(e) => setIndustry(e.target.value)}
+                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
+                  >
+                    <option>Hotels</option>
+                    <option>Restaurants</option>
+                    <option>Hospitals & Clinics</option>
+                    <option>Corporate Offices</option>
+                    <option>Schools & Hostels</option>
+                    <option>Gyms & Spas</option>
+                  </select>
+                </div>
+                
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="type" className="text-xs font-bold text-primary-deep uppercase tracking-wider">Laundry Category</label>
+                  <select
+                    id="type"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                    className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
+                  >
+                    <option>Bedding & Linens</option>
+                    <option>Towels & Robes</option>
+                    <option>Staff / Office Uniforms</option>
+                    <option>Kitchen / Restaurant Linens</option>
+                    <option>Dry Cleaning (Spa Gowns, etc.)</option>
+                    <option>Schools & Hostels</option>
+                    <option>Gyms & Spas</option>
+                  </select>
+                </div>
               </div>
 
               <div className="flex flex-col gap-1.5">

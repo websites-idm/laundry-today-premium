@@ -40,7 +40,7 @@ export function FloatingBar() {
             openBooking();
           }}
           suppressHydrationWarning
-          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-6 py-3 shadow-lg border-0 cursor-pointer transition-transform active:scale-95 animate-bounce shadow-primary/20"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-6 py-3 shadow-lg border-2 border-black cursor-pointer transition-transform active:scale-95 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s' }}
         >
           <span className="font-black text-white text-[20px] tracking-tight">Book now</span>
@@ -52,7 +52,7 @@ export function FloatingBar() {
         <a
           href="tel:+917702608040"
           onClick={() => handleTabClick("call")}
-          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg border-2 border-black no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s', animationDelay: '0.2s' }}
         >
           <span className="font-black text-white text-[16px] tracking-tight">Call</span>
@@ -61,7 +61,7 @@ export function FloatingBar() {
         <a
           href="https://wa.me/917702608040"
           onClick={() => handleTabClick("whatsapp")}
-          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg border-2 border-black no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s', animationDelay: '0.4s' }}
         >
           <span className="font-black text-white text-[16px] tracking-tight">WhatsApp</span>
@@ -70,7 +70,7 @@ export function FloatingBar() {
         <Link
           to="/pricing"
           onClick={() => handleTabClick("prices")}
-          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
+          className="pointer-events-auto bg-[#42bcf5] rounded-2xl px-5 py-2.5 shadow-lg border-2 border-black no-underline transition-transform active:scale-95 flex-shrink-0 animate-bounce shadow-primary/20"
           style={{ animationDuration: '3s', animationDelay: '0.6s' }}
         >
           <span className="font-black text-white text-[16px] tracking-tight whitespace-nowrap">Price list</span>
