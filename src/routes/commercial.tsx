@@ -142,6 +142,7 @@ function CommercialPage() {
                     type="text"
                     required
                     value={company}
+                    suppressHydrationWarning
                     onChange={(e) => setCompany(e.target.value)}
                     className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent"
                     placeholder="e.g. Grand Vista Hotel"
@@ -154,6 +155,7 @@ function CommercialPage() {
                     type="text"
                     required
                     value={name}
+                    suppressHydrationWarning
                     onChange={(e) => setName(e.target.value)}
                     className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent"
                     placeholder="e.g. Sunil Kumar"
@@ -168,6 +170,7 @@ function CommercialPage() {
                   type="tel"
                   required
                   value={phone}
+                  suppressHydrationWarning
                   onChange={(e) => setPhone(e.target.value)}
                   className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent"
                   placeholder="e.g. 9876543210"
@@ -180,6 +183,7 @@ function CommercialPage() {
                   <select
                     id="industry"
                     value={industry}
+                    suppressHydrationWarning
                     onChange={(e) => setIndustry(e.target.value)}
                     className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent cursor-pointer"
                   >
@@ -189,6 +193,7 @@ function CommercialPage() {
                     <option>Corporate Offices</option>
                     <option>Schools & Hostels</option>
                     <option>Gyms & Spas</option>
+                    <option>Others</option>
                   </select>
                 </div>
                 
@@ -200,6 +205,7 @@ function CommercialPage() {
                 <textarea
                   id="message"
                   value={message}
+                  suppressHydrationWarning
                   onChange={(e) => setMessage(e.target.value)}
                   rows={4}
                   className="rounded-2xl border-2 border-primary/10 bg-white px-5 py-3.5 text-sm font-semibold outline-none focus:border-accent resize-none"

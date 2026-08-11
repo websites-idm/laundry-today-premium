@@ -171,7 +171,7 @@ export function BookingPopup() {
           setIsOpen(true);
         }}
         suppressHydrationWarning
-        className="fixed bottom-20 left-4 z-40 flex items-center gap-2 rounded-full px-5 py-3.5 text-xs font-extrabold text-white accent-gradient shadow-lift hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer lg:bottom-6 floaty"
+        className="hidden lg:flex fixed bottom-6 left-6 z-40 items-center gap-2 rounded-full px-5 py-3.5 text-xs font-extrabold text-white accent-gradient shadow-lift hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer floaty"
         aria-label="Book Now"
       >
         <Calendar className="h-4.5 w-4.5 animate-pulse" />

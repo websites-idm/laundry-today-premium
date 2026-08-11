@@ -124,16 +124,18 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
-          <button
-            onClick={() => {
-              setOpen(false);
-              openBooking();
-            }}
-            suppressHydrationWarning
-            className="accent-gradient mt-2 rounded-2xl px-4 py-3 text-center text-base font-bold text-accent-foreground cursor-pointer"
-          >
-            Book Pickup
-          </button>
+          <div className="mt-2 pl-4 pb-4">
+            <button
+              onClick={() => {
+                setOpen(false);
+                openBooking();
+              }}
+              suppressHydrationWarning
+              className="bg-[#38b6ff] text-white border-2 border-black rounded-3xl px-8 py-2.5 text-base font-bold cursor-pointer transition-transform active:scale-95"
+            >
+              Book now
+            </button>
+          </div>
         </nav>
       </div>
     </header>

@@ -33,7 +33,7 @@ export function FloatingBar() {
       className="fixed bottom-4 inset-x-2 z-50 lg:hidden flex flex-col gap-2.5 pointer-events-none pb-safe"
     >
       {/* Top row: Book Now */}
-      <div className="flex justify-start pl-1">
+      <div className="flex justify-end pr-1">
         <button
           onClick={() => {
             handleTabClick("book");
