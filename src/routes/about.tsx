@@ -59,7 +59,7 @@ const team = [
     role: "Head of Fabric Care",
     bio: "Certified garments washing specialist. Expert in stain pre-spotting and delicate silk restoration.",
     image: "/fabric.jpeg",
-    imgClass: "object-top"
+    imgClass: "object-[center_30%]"
   },
   {
     name: "Laundry Today Team",
