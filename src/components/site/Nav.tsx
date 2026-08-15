@@ -41,7 +41,7 @@ export function Nav() {
       
       <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2">
-          <img src="/logo.png" alt="Laundry Today" className="h-9 w-auto sm:h-11" width={220} height={110} />
+          <img src="/logo1.jpeg" alt="Laundry Today" className="h-10 w-auto sm:h-12 object-contain rounded-full" />
           <span className="text-lg sm:text-xl font-extrabold text-primary-deep tracking-tight whitespace-nowrap">
             Laundry Today
           </span>

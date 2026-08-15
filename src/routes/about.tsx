@@ -43,9 +43,16 @@ const values = [
 
 const team = [
   {
-    name: "Vivek Chaurasiya & Mohammed Abdullah",
-    role: "Founder & CEO",
+    name: "Vivek Chaurasiya",
+    role: "Founder",
     bio: "Over 10 years of operations management experience. Committed to standardizing premium dry cleaning.",
+    image: "/founder.jpeg"
+  },
+  {
+    name: "Mohammed Abdullah",
+    role: "CEO",
+    bio: "Driving the strategic vision and expansion of Laundry Today's technology-driven operations.",
+    image: "/ceo.jpeg"
   },
   {
     name: "Mahesh Kumar Nirmal",
@@ -170,10 +177,19 @@ function AboutPage() {
       <section className="py-20 sm:py-28 bg-secondary rounded-[40px]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle ribbon="Our Team" title="Fabric Care Experts Behind Your Order" />
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-12 grid gap-8 md:grid-cols-4">
             {team.map((t, i) => (
               <Reveal key={t.name} delay={i * 0.1}>
-                <div className="h-full rounded-3xl bg-white p-6 shadow-soft hover:shadow-lift transition-all border border-primary/5 flex flex-col justify-between">
+                <div className="h-full rounded-3xl bg-white p-6 shadow-soft hover:shadow-lift transition-all border border-primary/5 flex flex-col justify-start text-center">
+                  {t.image ? (
+                    <div className="mx-auto mb-5 h-24 w-24 overflow-hidden rounded-full border-4 border-secondary/50 shadow-sm">
+                      <img src={t.image} alt={t.name} className="h-full w-full object-cover" />
+                    </div>
+                  ) : (
+                    <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-secondary/50 border-4 border-white shadow-sm">
+                      <Users className="h-8 w-8 text-primary/40" />
+                    </div>
+                  )}
                   <div>
                     <h3 className="text-lg font-bold text-primary-deep">{t.name}</h3>
                     <div className="text-xs font-semibold text-accent uppercase tracking-wider mt-1">{t.role}</div>

@@ -27,7 +27,7 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Laundry Today" loading="lazy" width={220} height={110} className="h-11 w-auto" />
+              <img src="/logo1.jpeg" alt="Laundry Today" loading="lazy" className="h-12 w-auto object-contain rounded-full" />
               <span className="text-xl font-extrabold text-primary-deep tracking-tight">
                 Laundry Today
               </span>

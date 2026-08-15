@@ -8,17 +8,17 @@ export function LeftQuickContact() {
         href="https://wa.me/917702608040"
         target="_blank"
         rel="noopener noreferrer"
-        className="lift flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lift hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer p-2"
+        className="lift flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lift hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer border-[1.5px] border-white overflow-hidden p-0"
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
       >
-        <img src="/whatsapp.png" alt="WhatsApp" className="h-full w-full object-contain" />
+        <img src="/whatsapp.png" alt="WhatsApp" className="h-full w-full object-cover scale-110" />
       </a>
 
       {/* Phone Floating Button */}
       <a
         href="tel:07702608040"
-        className="lift flex h-12 w-12 items-center justify-center rounded-full brand-gradient text-white shadow-lift hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer"
+        className="lift flex h-12 w-12 items-center justify-center rounded-full brand-gradient text-white shadow-lift hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer border-[1.5px] border-white"
         title="Call Support"
         aria-label="Call Support"
       >
