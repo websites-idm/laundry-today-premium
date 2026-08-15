@@ -43,13 +43,13 @@ const values = [
 
 const team = [
   {
-    name: "Vivek Chaurasiya",
+    name: "Mohammed Abdullah",
     role: "Founder",
     bio: "Over 10 years of operations management experience. Committed to standardizing premium dry cleaning.",
     image: "/founder.jpeg"
   },
   {
-    name: "Mohammed Abdullah",
+    name: "Vivek Chaurasiya",
     role: "CEO",
     bio: "Driving the strategic vision and expansion of Laundry Today's technology-driven operations.",
     image: "/ceo.jpeg"
@@ -59,11 +59,13 @@ const team = [
     role: "Head of Fabric Care",
     bio: "Certified garments washing specialist. Expert in stain pre-spotting and delicate silk restoration.",
     image: "/fabric.jpeg"
+  
   },
   {
     name: "Laundry Today Team",
     role: "Logistics Coordinator",
     bio: "Manages our delivery riders and route schedules to ensure next-day home delivery guarantees.",
+    image: "/logo1.jpeg"
   },
 ];
 
