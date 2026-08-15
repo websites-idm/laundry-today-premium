@@ -58,8 +58,8 @@ const team = [
     name: "Mahesh Kumar Nirmal",
     role: "Head of Fabric Care",
     bio: "Certified garments washing specialist. Expert in stain pre-spotting and delicate silk restoration.",
-    image: "/fabric.jpeg"
-  
+    image: "/fabric.jpeg",
+    imgClass: "object-top"
   },
   {
     name: "Laundry Today Team",
@@ -186,7 +186,7 @@ function AboutPage() {
                 <div className="h-full rounded-3xl bg-white p-6 shadow-soft hover:shadow-lift transition-all border border-primary/5 flex flex-col justify-start text-center">
                   {t.image ? (
                     <div className="mx-auto mb-5 h-24 w-24 overflow-hidden rounded-full border-4 border-secondary/50 shadow-sm">
-                      <img src={t.image} alt={t.name} className="h-full w-full object-cover" />
+                      <img src={t.image} alt={t.name} className={`h-full w-full object-cover ${t.imgClass || "object-center"}`} />
                     </div>
                   ) : (
                     <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-secondary/50 border-4 border-white shadow-sm">
