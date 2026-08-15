@@ -58,6 +58,7 @@ const team = [
     name: "Mahesh Kumar Nirmal",
     role: "Head of Fabric Care",
     bio: "Certified garments washing specialist. Expert in stain pre-spotting and delicate silk restoration.",
+    image: "/fabric.jpeg"
   },
   {
     name: "Laundry Today Team",
